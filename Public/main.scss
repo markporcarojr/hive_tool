@@ -1,0 +1,27 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// Include any default variable overrides here (though functions won't be available)
+$custom-colors: (
+  "michblue": #00274c,
+  "michgold": #ffcb05,
+  "inputgrey": rgba(217, 217, 217, 0.5),
+  "delete-btn": #d11a2a,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+:root {
+  --bs-body-bg: #00274c;
+}
+
+.outlined-text {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
