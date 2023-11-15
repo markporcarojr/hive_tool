@@ -25,3 +25,10 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: #ffcb05;
+}
