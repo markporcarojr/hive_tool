@@ -1,0 +1,136 @@
+<%- include("partials/header")%>
+    <body>
+    <!-- Nav Bar -->
+    <%- include("partials/navbar")%>
+  
+<!-- TODO: make more responsive layout for large Screens -->
+    <section>
+        <div class="container">
+            <div class="card text-michgold text-center" style="max-width: 90vw;">
+                <div class="card-header">
+                  <h1>New Inspection</h1>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">November 13 - 2023</h5>
+                  <div class="d-flex justify-content-evenly mt-5">
+                      <p class="card-text">📍 Fenton MI</p>
+                      <p class="card-text">56℉ 🌤️</p>
+                  </div>
+                  <div class="text-start mt-3">
+                    <p>Temperment</p>
+                  </div>
+                  <div class="d-flex justify-content-evenly">
+                        <input class="form-check-input" type="radio" name="inspectionResult" id="pending" value="pending" required>
+                        <label class="form-check-label" for="pending">
+                            Gentle
+                        </label>
+                        <input class="form-check-input " type="radio" name="inspectionResult" id="pending" value="pending" required>
+                        <label class="form-check-label" for="pending">
+                            Aggressive
+                        </label>
+                        <input class="form-check-input" type="radio" name="inspectionResult" id="pending" value="pending" required>
+                        <label class="form-check-label" for="pending">
+                            Active
+                        </label>
+                  </div>
+                  
+                  
+                </div>
+                <div class="text-start mt-3 mx-3 ">
+                    <p>Hive Strength</p>
+                </div>
+                    <input
+                        type="range"
+                        class="m-3 custom-range bg-michgold"
+                        min="0"
+                        max="100"
+                        id="customRange1"
+                        />
+                <div class="mt-5 ">
+                    <div class="form-check form-switch d-flex justify-content-between align-items-lg-center ">
+                        <div>Queen</div>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div>  
+                    <div class="form-check form-switch d-flex justify-content-between justify-content-lg-evenly ">
+                        <div>Brood</div>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div>  
+                    <div class="form-check form-switch d-flex justify-content-between justify-content-lg-evenly ">
+                        <div>Queen Cells</div>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div> 
+                    <div class="dropdown text-start mb-3">
+                        <button class="btn btn-inputgrey dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </button>
+                        <ul class="dropdown-menu bg-light">
+                          <li><button class="dropdown-item text-dark" type="button">Normal</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Spotty</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Compact</button></li>
+                        </ul>
+                    </div>
+                    <div class="form-check form-switch d-flex justify-content-between justify-content-lg-evenly ">
+                        <div>Disease</div>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div>  
+                    <div class="dropdown text-start mb-3">
+                        <button class="btn btn-inputgrey dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </button>
+                        <ul class="dropdown-menu bg-light">
+                          <li><button class="dropdown-item text-dark" type="button">Varroa mites</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Chalkbrood</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Stonebrood</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">American Foulbrood</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">European Foulbrood</button></li>
+                        </ul>
+                    </div>
+                    <div class="form-check form-switch d-flex justify-content-between justify-content-lg-evenly ">
+                        <div>Pests</div>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div> 
+                    <div class="dropdown text-start mb-3">
+                        <button class="btn btn-inputgrey dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Dropdown
+                        </button>
+                        <ul class="dropdown-menu bg-light">
+                          <li><button class="dropdown-item text-dark" type="button">Waxmoths</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Ants</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Mice</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Small hive beetle</button></li>
+                          <li><button class="dropdown-item text-dark" type="button">Wasps</button></li>
+                        </ul>
+                    </div> 
+                     
+                    
+                     
+                </div>
+            </div>
+            
+            <div class="d-flex justify-content-between justify-content-lg-evenly mt-3">
+                <button
+                    type="button"
+                    class="btn px-5  btn-danger text-dark fw-bold rounded-pill"
+                    >
+                    DELETE
+                </button>
+                <button
+                    type="button"
+                    class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
+                    >
+                    ADD
+                </button>
+            </div> 
+        </div>
+    </section>
+
+
+    
+    
+    
+    
+    
+    <%- include("partials/footer")%>
+
+    </body>
+  </html>
