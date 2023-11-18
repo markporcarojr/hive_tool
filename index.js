@@ -10,7 +10,8 @@ app.get('/', (req, res) => {
     res.render('home')
 });
 
-const pages = ['inspection', 'inventory', 'treatment', 'harvest', 'swarmtrap', 'feeding', 'login', 'inspection-form', 'new-hive-form'];
+const pages = ['inspection', 'inventory', 'treatment', 'harvest',
+    'swarmtrap', 'feeding', 'login', 'inspection-form', 'new-hive-form', 'inventory-form'];
 
 pages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
