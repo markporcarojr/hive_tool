@@ -2,15 +2,15 @@ const express = require('express')
 const app = express();
 const path = require('path');
 
+app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs');
 
-app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
     res.render('home')
 });
 
-const pages = ['inspection', 'inventory', 'treatment', 'harvest', 'swarmtrap', 'feeding'];
+const pages = ['inspection', 'inventory', 'treatment', 'harvest', 'swarmtrap', 'feeding', 'login'];
 
 pages.forEach(page => {
     app.get(`/${page}`, (req, res) => {

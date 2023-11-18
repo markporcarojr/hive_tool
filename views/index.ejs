@@ -1,0 +1,33 @@
+<!-- index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Inspection Cards</title>
+  </head>
+  <body>
+    <h1>Inspection Cards</h1>
+
+    <!-- Form to add a new inspection -->
+    <form action="/add-inspection" method="post">
+      <label for="hiveNumber">Hive Number:</label>
+      <input type="text" id="hiveNumber" name="hiveNumber" required />
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="temperature">Temperature:</label>
+      <input type="text" id="temperature" name="temperature" required />
+
+      <button type="submit">Add Inspection</button>
+    </form>
+
+    <!-- Display existing inspection cards -->
+    <div>
+      <% inspections.forEach((inspection, index) => { %> <%-
+      include('inspection-card', { ...inspection, index }); %> <% }); %>
+    </div>
+  </body>
+</html>

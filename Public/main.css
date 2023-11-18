@@ -12356,8 +12356,18 @@ textarea.form-control-lg {
   --bs-body-bg: #00274c;
 }
 
+body {
+  min-height: 400px;
+  margin-bottom: 100px;
+  clear: both;
+}
+
 .outlined-text {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.outlined-text-gold {
+  text-shadow: -3px -3px 0 #ffcb05, 3px -3px 0 #ffcb05, -3px 3px 0 #ffcb05, 3px 3px 0 #ffcb05;
 }
 
 footer {
@@ -12365,4 +12375,26 @@ footer {
   bottom: 0;
   width: 100vw;
   background-color: #ffcb05;
+}
+
+.hive-image {
+  /* cardSet the size and other styles for your container */
+  background-image: url(/images/honeycomb.jpeg); /* Specify the path to your image */
+  background-size: cover; /* Adjust the background size to cover the container */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  /* You can add more styles as needed */
+  background-attachment: fixed;
+}
+
+.btn-gold:hover {
+  background-color: rgba(255, 208, 30, 0.75);
+}
+
+input[type=range] {
+  accent-color: #ffcb05;
+}
+
+#facebookBtn:hover {
+  background-color: rgb(217, 217, 217);
 }
