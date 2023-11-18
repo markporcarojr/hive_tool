@@ -63,3 +63,20 @@ input[type="range"] {
 #facebookBtn:hover {
   background-color: rgb(217, 217, 217);
 }
+
+.temperBtn {
+  --bs-btn-color: #000;
+  --bs-btn-bg: #ffcb05;
+  --bs-btn-border-color: #8a7b3e;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #7a6203;
+  --bs-btn-hover-border-color: #25cff2;
+  --bs-btn-focus-shadow-rgb: 11, 172, 204;
+  --bs-btn-active-color: #000;
+  --bs-btn-active-bg: #7a6203;
+  --bs-btn-active-border-color: #7a6203;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #000;
+  --bs-btn-disabled-bg: #0dcaf0;
+  --bs-btn-disabled-border-color: #0dcaf0;
+}
