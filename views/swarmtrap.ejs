@@ -1,9 +1,44 @@
 <%- include("partials/header")%>
     <body>
-    <!-- Nav Bar -->
-    <%- include("partials/navbar")%>
+      <!-- Nav Bar -->
+      <%- include("partials/navbar")%>
 
-    <H1 class="text-center text-white  outlined-text-gold display-1 fw-bold">Swarm Traps</H1>
-    <%- include("partials/footer")%>
+    <div class="container text-center text-michgold ">
+
+      <H1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Swarm Traps</H1>
+      <h5 class="card-title">November 13 - 2023</h5>
+        <div class="d-flex justify-content-around mt-4">
+            <p class="card-text">📍 Fenton MI</p>
+            <p class="card-text">56℉ 🌤️</p>
+        </div>
+        <!-- Swarm Card -->
+      <div class="row row-cols-1 row-cols-lg-3 g-2">
+      <%- include("partials/new-swarmtrap-card")%>
+      <%- include("partials/new-swarmtrap-card")%>
+      <%- include("partials/new-swarmtrap-card")%>
+      <%- include("partials/new-swarmtrap-card")%>
+      <%- include("partials/new-swarmtrap-card")%>
+      <%- include("partials/new-swarmtrap-card")%>
+      <%- include("partials/new-swarmtrap-card")%>
+   
+      </div> 
+      
+      <!-- Swarm Card End-->
+      
+      <div class="fixedBtn" >
+        <button
+        type="button"
+        class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill "
+        style="
+        position: fixed;
+        left: 60%;
+        top: 80%;
+      ">
+        ADD ITEM
+        </button>
+      </div>
+    </div>
+  
+      <%- include("partials/footer")%>
     </body>
   </html>

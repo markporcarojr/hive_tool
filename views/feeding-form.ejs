@@ -1,0 +1,60 @@
+<%- include("partials/header")%>
+<body>
+  <!-- Nav Bar -->
+  <%- include("partials/navbar")%>
+
+  <section>
+    <div class="container" style="max-width: 500px">
+      <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw">
+        <div class="card-header">
+          <h1>New Feeding</h1>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">November 13 - 2023</h5>
+          <div class="d-flex justify-content-evenly mt-5">
+            <p class="card-text">📍 Fenton MI</p>
+            <p class="card-text">56℉ 🌤️</p>
+          </div>
+        </div>
+
+        <!-- Forms -->
+
+        <form class=>
+          <div class=" text-center m-3 fs-3 fw-semibold">
+            <label for="selct" class="form-label mb-3  ">Feeding Type</label>
+            <select class="form-select form-select-lg text-michgold" aria-label="Default select example">
+                <option selected>Select Feeding</option>
+                <option value="1">Sugar</option>
+                <option value="2">Pollen Patty</option>
+                <option value="3">Syrup</option>
+                <option value="4">Fondant</option>
+              </select>
+          </div>
+         
+          
+        </form>
+        <!-- Form end -->
+
+       
+
+      <div
+        class="d-flex justify-content-between  mt-5"
+      >
+        <button
+          type="button"
+          class="btn px-5 btn-danger text-dark fw-bold rounded-pill"
+        >
+          DELETE
+        </button>
+        <button
+          type="button"
+          class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
+        >
+          ADD
+        </button>
+      </div>
+    </div>
+  </section>
+  <%- include("partials/footer")%>
+
+</body>
