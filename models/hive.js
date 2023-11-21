@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+const Schema = mongoose.Schema;
 
 // Schema
-const Hive = new mongoose.Schema({
+const Hive = new Schema({
     hiveNumber: {
         type: Number,
         required: true
@@ -12,19 +13,15 @@ const Hive = new mongoose.Schema({
         required: false
     },
     hiveStrength: {
-        type: String,
+        type: Number,
         required: true
     },
     hiveDate: {
-        type: Date,
+        type: String,
         required: false
     }
 });
 
-Hive.virtual('formattedDate').get(function () {
-    // Format the date as MM/DD/YYYY using moment
-    return moment(this.hiveDate).format('MM/DD/YYYY');
-});
 
 
 module.exports = mongoose.model('Hive', Hive);

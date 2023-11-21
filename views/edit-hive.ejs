@@ -19,8 +19,11 @@
 
         <!-- Forms -->
 
-        <form action="/<%= data.id %>" method="post" id="hive-form">
+
+        <form action="/<%= data.id %>?_method=PUT" method="post" id="edit-hive-form">
           <div class="text-center m-3">
+            <input type="hidden" name="_method" value="PUT">
+    <!-- * -->
             <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"
               >Hive Number <%= data.hiveNumber %></label
             >
@@ -78,14 +81,14 @@
         </form>
       </div>
 
-      <div class="d-flex mt-3">
-        <button
-          type="submit"
-          form="hive-form"
-          class="btn px-5 mx-auto btn-michgold btn-gold fw-bold rounded-pill"
-        >
-          UPDATE
-        </button>
+      <div class="ms-auto mt-3">
+      <button
+        type="submit"
+        form="edit-hive-form"
+        class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill ms-auto"
+      >
+        UPDATE
+      </button>
       </div>
     </div>
   </section>

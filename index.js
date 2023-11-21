@@ -1,17 +1,24 @@
+const { log } = require('console');
 const express = require('express')
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+const { Types } = require('mongoose');
 const moment = require('moment');
-const { log } = require('console');
 const Hive = require('./models/hive');
+const methodOverride = require('method-override');
+// const bootstrap = require('bootstrap')
 
 
 app.use(express.static(path.join(__dirname, '/public')));
 // sets the ejs engine
 app.set('view engine', 'ejs');
 
+// MIDDLEWARE
+
+// Method-override
+app.use(methodOverride('_method'))
 // Body parser middleware
 
 // parse application/x-www-form-urlencoded
@@ -124,33 +131,112 @@ app.get('/treatment', (req, res) => {
 
 
 // Route for saving hive card
+// Route for saving hive card
 app.post('/add-to-hive-card', (req, res) => {
-    // save data on the database
+    const formattedDate = moment(req.body.hiveDate).format('ddd MMM DD YYYY');
+
+    // Check if the hiveNumber is a valid number
+    if (isNaN(req.body.hiveNumber)) {
+        return res.status(400).send('Invalid hiveNumber. Must be a number.');
+    }
+
+    // Check if the breed is a valid string
+    if (typeof req.body.breed !== 'string') {
+        return res.status(400).send('Invalid breed. Must be a string.');
+    }
+
+    // Check if the hiveStrength is a valid number
+    if (isNaN(req.body.hiveStrength)) {
+        return res.status(400).send('Invalid hiveStrength. Must be a number.');
+    }
+
+    // Exclude specific file names or values you want to ignore
+    if (req.body.hiveNumber === 'bootstrap.bundle.min.js') {
+        // Do not save data with this file name
+        return res.status(400).send('Invalid hiveNumber value.');
+    }
+
     const Data = new Hive({
         hiveNumber: req.body.hiveNumber,
         breed: req.body.breed,
         hiveStrength: req.body.hiveStrength,
-        hiveDate: req.body.hiveDate
-    })
-    // this returns a promise
-    Data.save().then(() => {
-        res.redirect('/')
-    }).catch(err => console.log(err));
-})
+        hiveDate: formattedDate
+    });
 
-TODO: // fix the route to the edit page
+    // Save data to the database
+    Data.save()
+        .then(() => {
+            res.redirect('/');
+        })
+        .catch(err => console.log(err));
+});
 
-// route for editing records
-app.get('/edit-hive/:id', (req, res) => {
+
+// Edit the Data edit-hive page
+// Edit the Data edit-hive page
+app.put('/:id', async (req, res) => {
+    try {
+        // Use mongoose.Types.ObjectId to validate if the provided id is a valid ObjectId
+        const isValidObjectId = mongoose.Types.ObjectId.isValid(req.params.id);
+
+        if (!isValidObjectId) {
+            return res.status(400).send('Invalid ObjectId');
+        }
+
+        const data = await Hive.findById(req.params.id);
+
+        if (!data) {
+            return res.status(404).send('Not Found');
+        }
+
+        data.hiveNumber = req.body.hiveNumber;
+        data.breed = req.body.breed;
+        data.hiveStrength = req.body.hiveStrength;
+        data.hiveDate = req.body.hiveDate;
+
+        await data.save();
+        res.redirect('/');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+
+// // Edit the Data edit-hive page
+// app.put('/:id', (req, res) => {
+//     Hive.findOne({
+//         _id: mongoose.Types.ObjectId(req.params.id)
+//     }).then(data => {
+//         if (!data) {
+//             // Handle case where data with the given id is not found
+//             return res.status(404).send('Not Found');
+//         }
+
+//         data.hiveNumber = req.body.hiveNumber,
+//             data.breed = req.body.breed,
+//             data.hiveStrength = req.body.hiveStrength,
+//             data.hiveDate = req.body.hiveDate
+
+//         data.save().then(() => {
+//             res.redirect('/');
+//         }).catch(err => console.log(err))
+//     }).catch(err => console.log(err))
+// })
+
+
+NOTE: // fixed the route to the edit page
+
+// route for edit-hive page
+app.get('/:id', (req, res) => {
     Hive.findOne({
         _id: req.params.id
     }).then(data => {
-
-        res.render('edit-hive', { data: data, title: 'Edit Hive' })
+        res.render('edit-hive', { data: data, title: "Edit Hive" })
     }).catch(err => console.log(err))
-
 })
-
 
 
 app.listen(3000, () => {

@@ -18,13 +18,18 @@
               <div class="card-header fs-4 fw-bold text-center pb-0">Hive # <%= hive.hiveNumber %></div>
               <div class="card-header fs-6 fw-bold text-center pb-0"><%= hive.breed %></div>
               <div
-                class="card-body pb-2 pt-1 mt-0 m-2 d-flex justify-content-between align-items-baseline"
+                class="card-body pb-2 pt-1 mt-0 m-1 mb-2 d-flex fw-semibold fs-5 
+                justify-content-between align-items-baseline"
               >
-                <div>Added <%= hive.hiveDate %> </div>
+                <div>Added: </div>
+                <div ><%= hive.hiveDate %></div>
+               
                 <div><%= hive.hiveStrength %>%</div>
               </div>
+              <!-- NOTE: Pathway was /edit-hive/hive.id -->
+              <!-- Fixed here and on Index.js -->
               <a
-                href="/edit-hive/<%= hive.id %>"
+                href="/<%= hive.id %>"
                 class="btn btn-danger rounded-5 mx-auto px-3 mb-2"
                 style="max-width: 30vw"
                 >EDIT</a
