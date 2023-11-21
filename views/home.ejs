@@ -1,31 +1,46 @@
 <%- include("partials/header")%>
-    <body>
-      <!-- Nav Bar -->
-      <%- include("partials/navbar")%>
+ <%- include("partials/navbar")%>
 
     <div class="container text-center text-michgold ">
 
-      <H1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Mark's Apiary</H1>
-      <h5 class="card-title">November 13 - 2023</h5>
+      <H1 class="text-center text-white  outlined-text display-1 fw-bold ">Mark's Apiary</H1>
+      <h5 class="card-title mt-5">November 13 - 2023</h5>
         <div class="d-flex justify-content-around mt-4">
             <p class="card-text">📍 Fenton MI</p>
             <p class="card-text">56℉ 🌤️</p>
         </div>
       <div class="row row-cols-1 row-cols-lg-3 g-2">
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-        <%- include("partials/new-hive-card")%>
-       
+        <!-- insert cards here -->
+        <% data.forEach((hive) => {%>
+        <div class="col">
+          <div class="container px-2" style="max-width: 500px">
+            <div class="card text-michgold border-michgold rounded-5 border-3">
+              <div class="card-header fs-4 fw-bold text-center pb-0">Hive # <%= hive.hiveNumber %></div>
+              <div class="card-header fs-6 fw-bold text-center pb-0"><%= hive.breed %></div>
+              <div
+                class="card-body pb-2 pt-1 mt-0 m-2 d-flex justify-content-between align-items-baseline"
+              >
+                <div>Added <%= hive.hiveDate %> </div>
+                <div><%= hive.hiveStrength %>%</div>
+              </div>
+              <a
+                href="/edit-hive/<%= hive.id %>"
+                class="btn btn-danger rounded-5 mx-auto px-3 mb-2"
+                style="max-width: 30vw"
+                >EDIT</a
+              >
+            </div>
+          </div>
+        </div>
+        <% }) %>
+
+        <!-- cards end -->
       </div> 
       
       
       <div class="fixedBtn" >
-        <button
+        <a
+        href="hive-form"
         type="button"
         class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill "
         style="
@@ -34,7 +49,8 @@
         top: 80%;
       ">
         ADD HIVE
-        </button>
+        </a>
+       
       </div>
     </div>
   

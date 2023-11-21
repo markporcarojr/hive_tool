@@ -12958,6 +12958,7 @@ fieldset:disabled .btn {
   }
   .d-print-table-cell {
     display: table-cell !important;
+    position: fixed;
   }
   .d-print-flex {
     display: flex !important;
@@ -12991,6 +12992,7 @@ body {
 
 footer {
   position: fixed;
+
   bottom: 0;
   width: 100vw;
   background-color: #ffcb05;

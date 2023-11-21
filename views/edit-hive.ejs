@@ -1,0 +1,93 @@
+<%- include("partials/header")%>
+  <%- include("partials/navbar")%>
+  <section>
+    <div class="container" style="max-width: 500px">
+      <div
+        class="card text-michgold text-center mt-2 mb-5"
+        style="max-width: 90vw"
+      >
+        <div class="card-header fw-bold">
+          <h1>Edit Hive</h1>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">November 13 - 2023</h5>
+          <div class="d-flex justify-content-evenly mt-5">
+            <p class="card-text">📍 Fenton MI</p>
+            <p class="card-text">56℉ 🌤️</p>
+          </div>
+        </div>
+
+        <!-- Forms -->
+
+        <form action="/<%= data.id %>" method="post" id="hive-form">
+          <div class="text-center m-3">
+            <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"
+              >Hive Number <%= data.hiveNumber %></label
+            >
+            <input
+              type="number"
+              class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+              id="hiveNumber"
+              name="hiveNumber"
+              aria-describedby="hiveNumber"
+              value="<%= data.hiveNumber %>"
+            />
+          </div>
+          <div class="text-center m-3">
+            <label for="breed" class="form-label fs-3 fw-semibold">Breed</label>
+            <input
+              type="text"
+              class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+              id="breed"
+              name="breed"
+              value="<%= data.breed %>"
+            />
+            <label for="hiveDate" class="form-label fs-3 fw-semibold"
+              >Date</label
+            >
+            <input
+              type="date"
+              class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+              id="hiveDate"
+              name="hiveDate"
+              value="<%= data.hiveDate %>"
+            />
+          </div>
+          <!-- Form end -->
+
+          <!-- Hive Range -->
+          <label
+            for="hiveStrength"
+            class="form-label mb-3 fs-3 fw-semibold text-start"
+            >Hive Strength</label
+          >
+          <div class="d-flex justify-content-evenly">
+            <p class="mt-3">0</p>
+            <input
+              type="range"
+              class="m-3 custom-range bg-michgold"
+              min="0"
+              max="100"
+              id="hiveStrength"
+              name="hiveStrength"
+              style="min-width: 17rem"
+              value="<%= data.hiveStrength %>"
+            />
+            <p class="mt-3">100%</p>
+          </div>
+        </form>
+      </div>
+
+      <div class="d-flex mt-3">
+        <button
+          type="submit"
+          form="hive-form"
+          class="btn px-5 mx-auto btn-michgold btn-gold fw-bold rounded-pill"
+        >
+          UPDATE
+        </button>
+      </div>
+    </div>
+  </section>
+  <%- include("partials/footer")%>
+</body>
