@@ -3,7 +3,7 @@ const moment = require('moment');
 const Schema = mongoose.Schema;
 
 // Schema
-const hiveSchema = new Schema({
+const Inspection = new Schema({
     hiveNumber: {
         type: Number,
         required: true
@@ -18,10 +18,10 @@ const hiveSchema = new Schema({
     },
     hiveDate: {
         type: String,
-        required: true
+        required: false
     }
 });
 
 
 
-module.exports = mongoose.model('Hive', hiveSchema);
+module.exports = mongoose.model('Inspection', Inspection);

@@ -2,6 +2,7 @@
 // Option A: Include all of Bootstrap
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 // Include any default variable overrides here (though functions won't be available)
 $custom-colors: (
@@ -21,10 +22,12 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
   --bs-body-bg: #00274c;
 }
 body {
+  // background-image: url(/images/honeycomb.jpeg);
   min-height: 400px;
   margin-bottom: 100px;
   clear: both;
 }
+
 .outlined-text {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
@@ -62,6 +65,25 @@ input[type="range"] {
 
 #facebookBtn:hover {
   background-color: rgb(217, 217, 217);
+}
+
+.background-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("/images/honeycomb.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
 }
 
 .temperBtn {

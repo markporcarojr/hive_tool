@@ -4,12 +4,11 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-const { Types } = require('mongoose');
 const moment = require('moment');
 const Hive = require('./models/hive');
+const Feed = require('./models/feed');
+const Swarm = require('./models/swarm');
 const methodOverride = require('method-override');
-// const bootstrap = require('bootstrap')
-
 
 app.use(express.static(path.join(__dirname, '/public')));
 // sets the ejs engine
@@ -42,10 +41,10 @@ mongoose.connect(url, {
         console.error('Error connecting to MongoDB:', err);
     });
 
-// Import Models
 
 
-// ************* ROUTING ******************
+
+// ********************************* PAGE ROUTING *******************************************
 
 
 
@@ -56,7 +55,9 @@ app.get('/feeding-form', (req, res) => {
 
 // Route to Feeding
 app.get('/feeding', (req, res) => {
-    res.render('feeding', { title: 'Feeding' })
+    Feed.find().then(data => {
+        res.render('feeding', { title: 'Feeding', data: data });
+    }).catch(err => console.log(err));
 })
 
 // Route to harvest-form
@@ -114,7 +115,9 @@ app.get('/swarmtrap-form', (req, res) => {
 
 // Route to swarmtrap
 app.get('/swarmtrap', (req, res) => {
-    res.render('swarmtrap', { title: 'Swarm Traps' })
+    Swarm.find().then(data => {
+        res.render('swarmtrap', { title: 'Swarm Traps', data: data });
+    }).catch(err => console.log(err));
 })
 
 // Route to treatment-form
@@ -127,110 +130,15 @@ app.get('/treatment', (req, res) => {
     res.render('treatment', { title: 'Treatments' })
 })
 
-// ************* ROUTING ******************
+// ************************************ PAGE ROUTING END ************************************
 
-
-// Route for saving hive card
-// Route for saving hive card
-app.post('/add-to-hive-card', (req, res) => {
-    const formattedDate = moment(req.body.hiveDate).format('ddd MMM DD YYYY');
-
-    // Check if the hiveNumber is a valid number
-    if (isNaN(req.body.hiveNumber)) {
-        return res.status(400).send('Invalid hiveNumber. Must be a number.');
-    }
-
-    // Check if the breed is a valid string
-    if (typeof req.body.breed !== 'string') {
-        return res.status(400).send('Invalid breed. Must be a string.');
-    }
-
-    // Check if the hiveStrength is a valid number
-    if (isNaN(req.body.hiveStrength)) {
-        return res.status(400).send('Invalid hiveStrength. Must be a number.');
-    }
-
-    // Exclude specific file names or values you want to ignore
-    if (req.body.hiveNumber === 'bootstrap.bundle.min.js') {
-        // Do not save data with this file name
-        return res.status(400).send('Invalid hiveNumber value.');
-    }
-
-    const Data = new Hive({
-        hiveNumber: req.body.hiveNumber,
-        breed: req.body.breed,
-        hiveStrength: req.body.hiveStrength,
-        hiveDate: formattedDate
-    });
-
-    // Save data to the database
-    Data.save()
-        .then(() => {
-            res.redirect('/');
-        })
-        .catch(err => console.log(err));
-});
-
-
-// Edit the Data edit-hive page
-// Edit the Data edit-hive page
-app.put('/:id', async (req, res) => {
-    try {
-        // Use mongoose.Types.ObjectId to validate if the provided id is a valid ObjectId
-        const isValidObjectId = mongoose.Types.ObjectId.isValid(req.params.id);
-
-        if (!isValidObjectId) {
-            return res.status(400).send('Invalid ObjectId');
-        }
-
-        const data = await Hive.findById(req.params.id);
-
-        if (!data) {
-            return res.status(404).send('Not Found');
-        }
-
-        data.hiveNumber = req.body.hiveNumber;
-        data.breed = req.body.breed;
-        data.hiveStrength = req.body.hiveStrength;
-        data.hiveDate = req.body.hiveDate;
-
-        await data.save();
-        res.redirect('/');
-    } catch (err) {
-        console.log(err);
-        res.status(500).send('Internal Server Error');
-    }
-});
-
-
-
-
-// // Edit the Data edit-hive page
-// app.put('/:id', (req, res) => {
-//     Hive.findOne({
-//         _id: mongoose.Types.ObjectId(req.params.id)
-//     }).then(data => {
-//         if (!data) {
-//             // Handle case where data with the given id is not found
-//             return res.status(404).send('Not Found');
-//         }
-
-//         data.hiveNumber = req.body.hiveNumber,
-//             data.breed = req.body.breed,
-//             data.hiveStrength = req.body.hiveStrength,
-//             data.hiveDate = req.body.hiveDate
-
-//         data.save().then(() => {
-//             res.redirect('/');
-//         }).catch(err => console.log(err))
-//     }).catch(err => console.log(err))
-// })
+// ===============================  EDIT ROUTING     ========================================
 
 
 NOTE: // fixed the route to the edit page
 
 // route for edit-hive page
-app.get('/:id', (req, res) => {
+app.get('/hive/edit/:id', (req, res) => {
     Hive.findOne({
         _id: req.params.id
     }).then(data => {
@@ -238,6 +146,139 @@ app.get('/:id', (req, res) => {
     }).catch(err => console.log(err))
 })
 
+// route for edit-feed page
+app.get('/feed/edit/:id', (req, res) => {
+    Feed.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-feed', { data: data, title: "Edit Feeding" })
+    }).catch(err => console.log(err))
+})
+
+// route for edit-swarm page
+app.get('/swarm/edit/:id', (req, res) => {
+    Swarm.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-swarm', { data: data, title: "Edit Swarm Trap" })
+    }).catch(err => console.log(err))
+})
+
+// ===============================   EDIT ROUTING END    ===================================
+
+// ************************************ ADDING NEW DATA ************************************
+
+// 2 - New Models
+
+function saveNewData(req, res, Model, redirectUrl) {
+    const data = new Model({
+        ...req.body
+    });
+
+    // Convert all string fields to uppercase
+    for (const key in data._doc) {
+        if (typeof data[key] === 'string') {
+            data[key] = data[key].toUpperCase();
+        }
+    }
+
+    // Save data to the database
+    data.save()
+        .then(() => {
+            res.redirect(redirectUrl);
+        })
+        .catch(err => console.log(err));
+}
+
+// Route for saving hive card
+app.post('/new-hive', (req, res) => {
+    saveNewData(req, res, Hive, '/');
+});
+
+// Route for Saving New Feeding
+app.post('/new-feed', (req, res) => {
+    saveNewData(req, res, Feed, '/feeding');
+});
+
+// Route for Saving New Swarm
+app.post('/new-swarm', (req, res) => {
+    saveNewData(req, res, Swarm, '/swarmtrap');
+});
+
+// ************************************  END ADDING NEW DATA *******************************
+
+// ===============================  EDIT DATA     ==========================================
+
+function editData(model, id, body, res, redirectPath, fields, dateFieldName) {
+    const formattedDate = moment(body[dateFieldName]).format('L');
+    model.findOne({
+        _id: id
+    }).then(data => {
+        fields.forEach(field => {
+            if (body[field]) {
+                data[field] = body[field].toUpperCase();
+            }
+        });
+        data[dateFieldName] = formattedDate;
+
+        data.save().then(() => {
+            res.redirect(redirectPath);
+        }).catch(err => console.log(err));
+    }).catch(err => console.log(err));
+}
+
+// // Edit Hives
+
+app.put('/hive/update/:id', (req, res) => {
+    const fields = ['hiveNumber', 'breed', 'hiveStrength'];
+    const dateFieldName = 'hiveDate';
+    editData(Hive, req.params.id, req.body, res, '/', fields, dateFieldName);
+});
+
+// Edit Feeds
+app.put('/feed/update/:id', (req, res) => {
+    const fields = ['feeding'];
+    const dateFieldName = 'feedDate';
+    editData(Feed, req.params.id, req.body, res, '/feeding', fields, dateFieldName);
+});
+
+// Edit Swarm Traps
+app.put('/swarm/update/:id', (req, res) => {
+    const fields = ['swarmNumber', 'location'];
+    const dateFieldName = 'swarmDate';
+    editData(Swarm, req.params.id, req.body, res, '/swarmtrap', fields, dateFieldName);
+});
+
+// ===============================  EDIT DATA END   ========================================
+
+
+// ************************************  DELETE DATA ***************************************
+
+// Delete Function
+function deleteItem(req, res, Model, redirectUrl) {
+    Model.deleteOne({
+        _id: req.params.id
+    }).then(() => {
+        res.redirect(redirectUrl);
+    }).catch(err => console.log(err));
+}
+
+// Delete Hive
+app.delete('/hive/delete/:id', (req, res) => {
+    deleteItem(req, res, Hive, '/');
+});
+
+// Delete Feeding
+app.delete('/feed/delete/:id', (req, res) => {
+    deleteItem(req, res, Feed, '/feeding');
+});
+
+// Delete Swarm trap
+app.delete('/swarm/delete/:id', (req, res) => {
+    deleteItem(req, res, Swarm, '/swarmtrap');
+});
+
+// ************************************  DELETE DATA END ***********************************
 
 app.listen(3000, () => {
     console.log('Listening on port 3000')

@@ -5,7 +5,7 @@
     <div class="container" style="max-width: 500px">
       <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw">
         <div class="card-header">
-          <h1>New Swarm Trap</h1>
+          <h1>Edit Swarm Trap</h1>
         </div>
         <div class="card-body">
           <h5 class="card-title">November 13 - 2023</h5>
@@ -17,42 +17,49 @@
 
         <!-- Forms -->
 
-        <form action="/new-swarm" method="post" id="swarm-form">
+        <form action="/swarm/update/<%= data.id %>?_method=PUT" method="post" id="edit-swarm-form">
+          <input type="hidden" name="_method" value="PUT">
           <div class=" m-3 fs-3 fw-semibold text-center">
-            <label for="exampleInputEmail1" class="form-label mb-3">Trap Number</label>
+            <label for="swarmNumber" class="form-label mb-3">Trap Number</label>
             <input
-              type="number"
+              type="text"
               class="text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-              id="swarmNumber"
-              aria-describedby="swarmNumber"
               name="swarmNumber"
+              aria-describedby="emailHelp"
+              value="<%= data.swarmNumber %>"
             />
           </div>
           <div class=" m-3 fs-3 fw-semibold mb-3">
             <label for="location" class="form-label" rows="3">Location</label>
             <textarea class="form-control bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" 
-            id="location" 
-            name="location"  
-            rows="2"></textarea>
+            id="exampleFormControlTextarea1" 
+            name="location"
+            rows="2"><%= data.location %></textarea>
           </div>
           <label for="swarmDate" class="form-label fs-3 fw-semibold mb-3">Date</label>
               <input
                 type="date"
                 class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-                id="swarmDate"
                 name="swarmDate"
+                value="<%= data.swarmDate %>"
+                
               />
+          
         </form>
         <!-- Form end -->
 
-      <div class="d-flex justify-content-around  mt-5">
-        
+       
+
+      <div
+        class="d-flex justify-content-around  mt-5"
+      >
+       
         <button
           type="submit"
-          form="swarm-form"
+          form="edit-swarm-form"
           class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
         >
-          ADD
+          UPDATE
         </button>
       </div>
     </div>

@@ -5,7 +5,7 @@
     <div class="container" style="max-width: 500px">
       <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw">
         <div class="card-header">
-          <h1>New Feeding</h1>
+          <h1>Edit Feeding</h1>
         </div>
         <div class="card-body">
           <h5 class="card-title">November 13 - 2023</h5>
@@ -18,10 +18,11 @@
         <!-- Forms -->
 
 
-          <form action="/new-feed" method="post" id="feed-form">
+          <form action="/feed/update/<%= data.id %>?_method=PUT" method="post" id="edit-feed-form">
+            <input type="hidden" name="_method" value="PUT">
             <label for="feeding" class="form-label fs-3 fw-semibold my-3">Feeding</label>
               <select name="feeding" id="feeding" class="form-select text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
-                <option   selected disabled>Select Feeding Type</option>
+                <option   value="<%= data.feeding %>" selected > <%= data.feeding %></option>
                   <option value="fondant">Fondant</option>
                   <option value="sugar">Sugar</option>
                   <option value="pollen patty">Pollen Patty</option>
@@ -34,6 +35,7 @@
                 class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
                 id="feedDate"
                 name="feedDate"
+                value="<%= data.feedDate %>"
                 
               />
           </form> 
@@ -50,10 +52,10 @@
         
         <button
           type="submit"
-          form="feed-form"
+          form="edit-feed-form"
           class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
         >
-          ADD
+          UPDATE
         </button>
       </div>
     </div>

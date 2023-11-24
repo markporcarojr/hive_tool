@@ -20,7 +20,7 @@
 
         <!-- Forms -->
 
-        <form action="/add-to-hive-card" method="post" id="hive-form">
+        <form action="/new-hive" method="post" id="hive-form">
           <div class="text-center m-3">
             <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"
               >Hive Number</label
@@ -34,14 +34,14 @@
             />
           </div>
           <div class="text-center m-3">
-            <label for="breed" class="form-label fs-3 fw-semibold">Breed</label>
+            <label for="breed" class="form-label fs-3 fw-semibold mb-3">Breed</label>
             <input
               type="text"
               class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
               id="breed"
               name="breed"
             />
-            <label for="hiveDate" class="form-label fs-3 fw-semibold">Date</label>
+            <label for="hiveDate" class="form-label fs-3 fw-semibold my-3">Date</label>
             <input
               type="date"
               class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
@@ -73,14 +73,8 @@
         </form>
       </div>
 
-      <div class="d-flex justify-content-between mt-3">
-        <button
-          type="button"
-          form="hive-form"
-          class="btn px-5 btn-danger text-dark fw-bold rounded-pill"
-        >
-          DELETE
-        </button>
+      <div class="d-flex justify-content-around mt-3">
+        
         <button
           type="submit"
           form="hive-form"

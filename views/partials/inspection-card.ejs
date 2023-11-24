@@ -4,7 +4,7 @@
       class="card border-michgold border-3 rounded-5 m-2 mx-auto"
       style="max-width: 90vw"
     >
-      <div class="container">
+      <div class="container card-header border-bottom border-3 border-michgold">
         <div class="row ms-auto text-center">
           <div class="pt-3 my-auto align-items-center text-michgold col">
             <svg
@@ -172,30 +172,22 @@
           </div>
         </div>
       </div>
-      <label for="customRange1" class="mx-4 mt-3 text-michgold form-label"
-        >Hive Strength</label
-      >
-
-      <input
-        type="range"
-        class="mx-4 custom-range bg-michgold"
-        min="0"
-        max="100"
-        id="customRange1"
-      />
+      <div for="customRange1" class="mx-4 mt-3 text-michgold form-label">
+        Hive Strength
+      </div>
 
       <div class="card-body text-michgold">
-        <p class="card-text m-0">✓ Queen Spotted</p>
-        <p class="card-text m-0">✓ Normal Brood Pattern</p>
-        <p class="card-text m-0">✓ Eggs Spotted</p>
-        <p class="card-text m-0">⚠️ Varroa Mites</p>
-        <p class="card-text m-0">⚠️ Small hive beetle</p>
-        <p class="card-text m-0">⚠️ Queen Cells Spotted</p>
-        <div class="text-end">
-          <button
-            type="button"
-            class="btn px-5 btn-michgold btn-gold rounded-pill"
-          >
+        <div class="">
+          <p class="card-text m-0">✓ Queen Spotted</p>
+          <p class="card-text m-0">✓ Normal Brood Pattern</p>
+          <p class="card-text m-0">✓ Eggs Spotted</p>
+          <p class="card-text m-0">⚠️ Varroa Mites</p>
+          <p class="card-text m-0">⚠️ Small hive beetle</p>
+          <p class="card-text m-0">⚠️ Queen Cells Spotted</p>
+        </div>
+        <div class="mt-3 d-flex justify-content-between">
+          <button type="button" class="btn rounded-5 btn-danger">DELETE</button>
+          <button type="button" class="btn btn-primary rounded-5 px-4">
             EDIT
           </button>
         </div>

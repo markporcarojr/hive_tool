@@ -1,5 +1,6 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
+  
   <section>
     <div class="container" style="max-width: 500px">
       <div
@@ -20,7 +21,7 @@
         <!-- Forms -->
 
 
-        <form action="/<%= data.id %>?_method=PUT" method="post" id="edit-hive-form">
+        <form action="/hive/update/<%= data.id %>?_method=PUT" method="post" id="edit-hive-form">
           <div class="text-center m-3">
             <input type="hidden" name="_method" value="PUT">
     <!-- * -->
@@ -81,14 +82,15 @@
         </form>
       </div>
 
-      <div class="ms-auto mt-3">
-      <button
-        type="submit"
-        form="edit-hive-form"
-        class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill ms-auto"
-      >
-        UPDATE
-      </button>
+      <div class="d-flex  mt-3 justify-content-around">
+        
+        <button
+          type="submit"
+          form="edit-hive-form"
+          class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill "
+        >
+          UPDATE
+        </button>
       </div>
     </div>
   </section>

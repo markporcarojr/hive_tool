@@ -3,20 +3,18 @@ const moment = require('moment');
 const Schema = mongoose.Schema;
 
 // Schema
-const hiveSchema = new Schema({
-    hiveNumber: {
+const swarmSchema = new Schema({
+    swarmNumber: {
         type: Number,
         required: true
     },
-    breed: {
+
+    location: {
         type: String,
-        required: false
-    },
-    hiveStrength: {
-        type: Number,
         required: true
     },
-    hiveDate: {
+
+    swarmDate: {
         type: String,
         required: true
     }
@@ -24,4 +22,4 @@ const hiveSchema = new Schema({
 
 
 
-module.exports = mongoose.model('Hive', hiveSchema);
+module.exports = mongoose.model('Swarm', swarmSchema);

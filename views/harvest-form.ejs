@@ -18,22 +18,20 @@
         <!-- Forms -->
 
         <form class=>
-          <div class=" text-start m-3 fs-3 fw-semibold">
-            <label for="exampleInputEmail1" class="form-label mb-3">Honey</label>
+          <select name="harvest" id="harvest" class="form-select fs-5  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
+            <option   selected disabled>Select Harvest Type</option>
+              <option value="Honey">🍯 Honey</option>
+              <option class="" value="Wax">🐝 Wax</option>
+              
+            </select>
+            <h2 class="mt-3">Amount</h2>
+            <div class=" m-3 fs-3 fw-semibold mb-5 d-flex justify-content-between">
             <input
-              type="text"
-              class="form-control bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div class="text-start m-3 fs-3 fw-semibold mb-5">
-            <label for="exampleInputPassword1" class="form-label">Quantity</label>
-            <input
-              type="text"
-              class="form-control bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+              type="number"
+              class="form-control fs-5 bg-inputgrey border-3 me-3 text-end border-michgold rounded-4 opacity-50 fw-bold"
               id="exampleInputPassword1"
             />
+            <label for="" class=" mt-2">Lbs</label>
           </div>
           
         </form>
@@ -42,14 +40,9 @@
        
 
       <div
-        class="d-flex justify-content-between  mt-5"
+        class="d-flex justify-content-around  mt-5"
       >
-        <button
-          type="button"
-          class="btn px-5 btn-danger text-dark fw-bold rounded-pill"
-        >
-          DELETE
-        </button>
+       
         <button
           type="button"
           class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
