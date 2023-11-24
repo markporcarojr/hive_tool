@@ -17,9 +17,10 @@
 
         <!-- Forms -->
 
-        <form action="/new-harvest" method="post" id="harvest-form">
+        <form action="/harvest/update" method="post" id="edit-harvest-form">
+          <input type="hidden" name="_method" value="PUT">
           <select name="harvestType" id="harvestType" class="form-select fs-5  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
-            <option   selected disabled>Select Harvest Type</option>
+            <option  value="<%= data.harvestType %>" selected disabled><%= data.harvestType %></option>
               <option value="Honey">Honey</option>
               <option class="" value="Wax">Wax</option>
               
@@ -33,6 +34,7 @@
               class="form-control fs-5 bg-inputgrey border-3 me-3 text-end border-michgold rounded-4 opacity-50 fw-bold"
               id="harvestAmount"
               name="harvestAmount"
+              value="<%= data.harvestAmount %>"
             />
             
             <h2 for="" class=" mt-2">Lbs</h2>
@@ -43,6 +45,7 @@
                 class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
                 id="harvestDate"
                 name="harvestDate"
+                value="<%= data.harvestDate %>"
               />
         </form>
         <!-- Form end -->
@@ -55,10 +58,10 @@
        
         <button
           type="submit"
-          form="harvest-form"
+          form="editharvest-form"
           class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
         >
-          ADD
+          UPDATE
         </button>
       </div>
     </div>

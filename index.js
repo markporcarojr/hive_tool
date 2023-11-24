@@ -8,6 +8,8 @@ const moment = require('moment');
 const Hive = require('./models/hive');
 const Feed = require('./models/feed');
 const Swarm = require('./models/swarm');
+const Harvest = require('./models/harvest');
+const Treatment = require('./models/treatment');
 const methodOverride = require('method-override');
 
 app.use(express.static(path.join(__dirname, '/public')));
@@ -67,7 +69,9 @@ app.get('/harvest-form', (req, res) => {
 
 // Route to harvest
 app.get('/harvest', (req, res) => {
-    res.render('harvest', { title: 'Harvest' })
+    Harvest.find().then(data => {
+        res.render('harvest', { title: 'Harvest', data: data });
+    }).catch(err => console.log(err));
 })
 
 // Route to hive-form
@@ -127,24 +131,15 @@ app.get('/treatment-form', (req, res) => {
 
 // Route to treatment
 app.get('/treatment', (req, res) => {
-    res.render('treatment', { title: 'Treatments' })
+    Treatment.find().then(data => {
+        res.render('treatment', { title: 'Treatment', data: data });
+    }).catch(err => console.log(err));
 })
 
 // ************************************ PAGE ROUTING END ************************************
 
-// ===============================  EDIT ROUTING     ========================================
-
-
+// ===============================  EDIT PAGE ROUTING     ========================================
 NOTE: // fixed the route to the edit page
-
-// route for edit-hive page
-app.get('/hive/edit/:id', (req, res) => {
-    Hive.findOne({
-        _id: req.params.id
-    }).then(data => {
-        res.render('edit-hive', { data: data, title: "Edit Hive" })
-    }).catch(err => console.log(err))
-})
 
 // route for edit-feed page
 app.get('/feed/edit/:id', (req, res) => {
@@ -152,6 +147,24 @@ app.get('/feed/edit/:id', (req, res) => {
         _id: req.params.id
     }).then(data => {
         res.render('edit-feed', { data: data, title: "Edit Feeding" })
+    }).catch(err => console.log(err))
+})
+
+// route for edit-harvest page
+app.get('/harvest/edit/:id', (req, res) => {
+    Harvest.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-harvest', { data: data, title: "Edit Harvest" })
+    }).catch(err => console.log(err))
+})
+
+// route for edit-hive page
+app.get('/hive/edit/:id', (req, res) => {
+    Hive.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-hive', { data: data, title: "Edit Hive" })
     }).catch(err => console.log(err))
 })
 
@@ -164,13 +177,23 @@ app.get('/swarm/edit/:id', (req, res) => {
     }).catch(err => console.log(err))
 })
 
+// route for edit-treatment page
+app.get('/treatment/edit/:id', (req, res) => {
+    Treatment.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-treatment', { data: data, title: "Edit Treatment" })
+    }).catch(err => console.log(err))
+})
+
 // ===============================   EDIT ROUTING END    ===================================
 
 // ************************************ ADDING NEW DATA ************************************
 
 // 2 - New Models
 
-function saveNewData(req, res, Model, redirectUrl) {
+function saveNewData(req, res, Model, redirectUrl, dateFieldName) {
+    // Create a new instance of the model
     const data = new Model({
         ...req.body
     });
@@ -182,6 +205,10 @@ function saveNewData(req, res, Model, redirectUrl) {
         }
     }
 
+    // Format the date field
+    const formattedDate = moment(req.body[dateFieldName]).format('L');
+    data[dateFieldName] = formattedDate;
+
     // Save data to the database
     data.save()
         .then(() => {
@@ -190,19 +217,34 @@ function saveNewData(req, res, Model, redirectUrl) {
         .catch(err => console.log(err));
 }
 
-// Route for saving hive card
-app.post('/new-hive', (req, res) => {
-    saveNewData(req, res, Hive, '/');
-});
-
 // Route for Saving New Feeding
 app.post('/new-feed', (req, res) => {
-    saveNewData(req, res, Feed, '/feeding');
+    const dateFieldName = 'feedDate';
+    saveNewData(req, res, Feed, '/feeding', dateFieldName);
+});
+
+// Route for saving hive card
+app.post('/new-hive', (req, res) => {
+    const dateFieldName = 'hiveDate';
+    saveNewData(req, res, Hive, '/', dateFieldName);
+});
+
+// Route for saving harvest card
+app.post('/new-harvest', (req, res) => {
+    const dateFieldName = 'harvestDate';
+    saveNewData(req, res, Harvest, '/harvest', dateFieldName);
 });
 
 // Route for Saving New Swarm
 app.post('/new-swarm', (req, res) => {
-    saveNewData(req, res, Swarm, '/swarmtrap');
+    const dateFieldName = 'swarmDate';
+    saveNewData(req, res, Swarm, '/swarmtrap', dateFieldName);
+});
+
+// Route for Saving New Treatment
+app.post('/new-treatment', (req, res) => {
+    const dateFieldName = 'treatmentDate';
+    saveNewData(req, res, Treatment, '/treatment', dateFieldName);
 });
 
 // ************************************  END ADDING NEW DATA *******************************
@@ -227,14 +269,6 @@ function editData(model, id, body, res, redirectPath, fields, dateFieldName) {
     }).catch(err => console.log(err));
 }
 
-// // Edit Hives
-
-app.put('/hive/update/:id', (req, res) => {
-    const fields = ['hiveNumber', 'breed', 'hiveStrength'];
-    const dateFieldName = 'hiveDate';
-    editData(Hive, req.params.id, req.body, res, '/', fields, dateFieldName);
-});
-
 // Edit Feeds
 app.put('/feed/update/:id', (req, res) => {
     const fields = ['feeding'];
@@ -242,11 +276,32 @@ app.put('/feed/update/:id', (req, res) => {
     editData(Feed, req.params.id, req.body, res, '/feeding', fields, dateFieldName);
 });
 
+// Edit Hives
+app.put('/hive/update/:id', (req, res) => {
+    const fields = ['hiveNumber', 'breed', 'hiveStrength'];
+    const dateFieldName = 'hiveDate';
+    editData(Hive, req.params.id, req.body, res, '/', fields, dateFieldName);
+});
+
+// Edit Harvest
+app.put('/harvest/update/:id', (req, res) => {
+    const fields = ['harvestType', 'harvestAmount'];
+    const dateFieldName = 'harvestDate';
+    editData(Hive, req.params.id, req.body, res, '/harvest', fields, dateFieldName);
+});
+
 // Edit Swarm Traps
 app.put('/swarm/update/:id', (req, res) => {
     const fields = ['swarmNumber', 'location'];
     const dateFieldName = 'swarmDate';
     editData(Swarm, req.params.id, req.body, res, '/swarmtrap', fields, dateFieldName);
+});
+
+// Edit Treatment
+app.put('/treatment/update/:id', (req, res) => {
+    const fields = ['treatment'];
+    const dateFieldName = 'treatmentDate';
+    editData(Treatment, req.params.id, req.body, res, '/treatment', fields, dateFieldName);
 });
 
 // ===============================  EDIT DATA END   ========================================
@@ -263,19 +318,29 @@ function deleteItem(req, res, Model, redirectUrl) {
     }).catch(err => console.log(err));
 }
 
-// Delete Hive
-app.delete('/hive/delete/:id', (req, res) => {
-    deleteItem(req, res, Hive, '/');
-});
-
 // Delete Feeding
 app.delete('/feed/delete/:id', (req, res) => {
     deleteItem(req, res, Feed, '/feeding');
 });
 
+// Delete Hive
+app.delete('/hive/delete/:id', (req, res) => {
+    deleteItem(req, res, Hive, '/');
+});
+
+// Delete Harvest 
+app.delete('/harvest/delete/:id', (req, res) => {
+    deleteItem(req, res, Harvest, '/harvest');
+});
+
 // Delete Swarm trap
 app.delete('/swarm/delete/:id', (req, res) => {
     deleteItem(req, res, Swarm, '/swarmtrap');
+});
+
+// Delete Treatment
+app.delete('/treatment/delete/:id', (req, res) => {
+    deleteItem(req, res, Treatment, '/treatment');
 });
 
 // ************************************  DELETE DATA END ***********************************

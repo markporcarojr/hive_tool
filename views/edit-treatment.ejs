@@ -17,11 +17,12 @@
 
         <!-- Forms -->
 
-        <form action="/new-treatment" method="post" id="treatment-form">
+        <form action="/treatment/update/<%= data.id %>?_method=PUT" method="post" id="treatment-form">
+          <input type="hidden" name="_method" value="PUT">
           <div class=" text-center m-3 fs-3 fw-semibold">
             <label for="treatment" class="form-label fs-3 fw-semibold my-3">Treatment</label>
-              <select name="treatment" id="treatment" class="form-select text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
-                <option   selected disabled>Select Treatment</option>
+              <select  name="treatment" id="treatment" class="form-select text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
+                <option  value="<%= data.treatment %>" selected disabled><%= data.treatment %></option>
                   <option value="Oxalic Acid">Oxalic Acid</option>
                   <option value="Formic Acid">Formic Acid</option>
                   <option value="Apivar">Apivar</option>
@@ -34,6 +35,7 @@
                 class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
                 id="treatmentDate"
                 name="treatmentDate"
+                value="<%= data.treatmentDate %>"
                 
               />
           
