@@ -1,11 +1,12 @@
-const { log } = require('console');
 const express = require('express')
 const app = express();
 const path = require('path');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const moment = require('moment');
 const Hive = require('./models/hive');
+const Inventory = require('./models/inventory');
+const Inspection = require('./models/inspections');
 const Feed = require('./models/feed');
 const Swarm = require('./models/swarm');
 const Harvest = require('./models/harvest');
@@ -94,7 +95,9 @@ app.get('/inspection-form', (req, res) => {
 
 // Route to inspection
 app.get('/inspection', (req, res) => {
-    res.render('inspection', { title: 'Inspections' })
+    Inspection.find().then(data => {
+        res.render('inspection', { title: 'Inspection', data: data });
+    }).catch(err => console.log(err));
 })
 
 // Route to inventory-form
@@ -104,7 +107,9 @@ app.get('/inventory-form', (req, res) => {
 
 // Route to inventory
 app.get('/inventory', (req, res) => {
-    res.render('inventory', { title: 'Inventory' })
+    Inventory.find().then(data => {
+        res.render('inventory', { title: 'Inventory', data: data });
+    }).catch(err => console.log(err));
 })
 
 // Route to login
@@ -138,7 +143,7 @@ app.get('/treatment', (req, res) => {
 
 // ************************************ PAGE ROUTING END ************************************
 
-// ===============================  EDIT PAGE ROUTING     ========================================
+// ===============================  EDIT PAGE ROUTING   (get)  ========================================
 NOTE: // fixed the route to the edit page
 
 // route for edit-feed page
@@ -168,6 +173,24 @@ app.get('/hive/edit/:id', (req, res) => {
     }).catch(err => console.log(err))
 })
 
+// route for edit-inventory page
+app.get('/inventory/edit/:id', (req, res) => {
+    Inventory.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-inventory', { data: data, title: "Edit Inventory" })
+    }).catch(err => console.log(err))
+})
+
+// route for edit-inspection page
+app.get('/inspection/edit/:id', (req, res) => {
+    Inspection.findOne({
+        _id: req.params.id
+    }).then(data => {
+        res.render('edit-inspection', { data: data, title: "Edit Inspections" })
+    }).catch(err => console.log(err))
+})
+
 // route for edit-swarm page
 app.get('/swarm/edit/:id', (req, res) => {
     Swarm.findOne({
@@ -188,7 +211,7 @@ app.get('/treatment/edit/:id', (req, res) => {
 
 // ===============================   EDIT ROUTING END    ===================================
 
-// ************************************ ADDING NEW DATA ************************************
+// ************************************ ADDING NEW DATA (post)  ************************************
 
 // 2 - New Models
 
@@ -223,16 +246,28 @@ app.post('/new-feed', (req, res) => {
     saveNewData(req, res, Feed, '/feeding', dateFieldName);
 });
 
-// Route for saving hive card
+// Route for saving hive 
 app.post('/new-hive', (req, res) => {
     const dateFieldName = 'hiveDate';
     saveNewData(req, res, Hive, '/', dateFieldName);
 });
 
-// Route for saving harvest card
+// Route for saving harvest 
 app.post('/new-harvest', (req, res) => {
     const dateFieldName = 'harvestDate';
     saveNewData(req, res, Harvest, '/harvest', dateFieldName);
+});
+
+// Route for saving inventory 
+app.post('/new-inventory', (req, res) => {
+    const dateFieldName = 'inventoryDate';
+    saveNewData(req, res, Inventory, '/inventory', dateFieldName);
+});
+
+// Route for saving inspection 
+app.post('/new-inspection', (req, res) => {
+    const dateFieldName = 'inspectionDate';
+    saveNewData(req, res, Inspection, '/inspection', dateFieldName);
 });
 
 // Route for Saving New Swarm
@@ -249,7 +284,7 @@ app.post('/new-treatment', (req, res) => {
 
 // ************************************  END ADDING NEW DATA *******************************
 
-// ===============================  EDIT DATA     ==========================================
+// ===============================  EDIT DATA  (put)   ==========================================
 
 function editData(model, id, body, res, redirectPath, fields, dateFieldName) {
     const formattedDate = moment(body[dateFieldName]).format('L');
@@ -287,7 +322,21 @@ app.put('/hive/update/:id', (req, res) => {
 app.put('/harvest/update/:id', (req, res) => {
     const fields = ['harvestType', 'harvestAmount'];
     const dateFieldName = 'harvestDate';
-    editData(Hive, req.params.id, req.body, res, '/harvest', fields, dateFieldName);
+    editData(Harvest, req.params.id, req.body, res, '/harvest', fields, dateFieldName);
+});
+
+// Edit Inventory
+app.put('/inventory/update/:id', (req, res) => {
+    const fields = ['inventoryType', 'inventoryAmount'];
+    const dateFieldName = 'inventoryDate';
+    editData(Inventory, req.params.id, req.body, res, '/inventory', fields, dateFieldName);
+});
+
+// Edit Inspection
+app.put('/inspection/update/:id', (req, res) => {
+    const fields = ['hiveNumber', 'temperament', 'strength', 'queen', 'queenCell', 'brood', 'disease', 'pests', 'eggs'];
+    const dateFieldName = 'inspectionDate';
+    editData(Inspection, req.params.id, req.body, res, '/inspection', fields, dateFieldName);
 });
 
 // Edit Swarm Traps
@@ -333,6 +382,16 @@ app.delete('/harvest/delete/:id', (req, res) => {
     deleteItem(req, res, Harvest, '/harvest');
 });
 
+// Delete Inventory 
+app.delete('/inventory/delete/:id', (req, res) => {
+    deleteItem(req, res, Inventory, '/inventory');
+});
+
+// Delete Inspection 
+app.delete('/inspection/delete/:id', (req, res) => {
+    deleteItem(req, res, Inspection, '/inspection');
+});
+
 // Delete Swarm trap
 app.delete('/swarm/delete/:id', (req, res) => {
     deleteItem(req, res, Swarm, '/swarmtrap');
@@ -344,6 +403,22 @@ app.delete('/treatment/delete/:id', (req, res) => {
 });
 
 // ************************************  DELETE DATA END ***********************************
+
+// =================== Shut Down Database Connection =======================
+
+// Handle graceful shutdown
+process.on('SIGINT', () => {
+    mongoose.connection.close()
+        .then(() => {
+            console.log('Mongo DB connection closed due to application termination');
+            process.exit(0);
+        })
+        .catch(err => {
+            console.error('Error closing MongoDB connection:', err);
+            process.exit(1);
+        });
+});
+
 
 app.listen(3000, () => {
     console.log('Listening on port 3000')

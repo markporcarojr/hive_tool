@@ -5,14 +5,15 @@
     <section>
         <div class="container" style="max-width: 500px;">
             <div class="card text-michgold text-center mt-2" style="max-width: 90vw;">
-                <h1>New Inspection</h1>
+                <h1>Edit Inspection</h1>
                 <h5 class="card-title mt-3" id="datetime"></h5>
                 <div class="d-flex justify-content-between mt-3">
                   <p class="card-text">📍 Fenton MI</p>
                   <p class="card-text">56℉ 🌤️</p>
                 </div>
                 
-                <form action="/new-inspection" method="post" id="inspection-form">
+                <form action="/inspection/update/<%= data.id %>?_method=PUT" method="post" id="edit-inspection-form">
+                 <input type="hidden" name="_method" value="PUT">
                   <div class="text-center m-3">
                     <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"
                       >Hive Number</label
@@ -23,17 +24,18 @@
                       id="hiveNumber"
                       name="hiveNumber"
                       aria-describedby="hiveNumber"
+                      value="<%= data.hiveNumber %>"
                     />
                   </div>
                       <label for="temperament" class="text-center mb-3 fw-semibold fs-3">Temperament</label>
                       <div class="d-flex justify-content-evenly mb-3">
-                          <input type="radio" class="btn-check" name="temperament" id="calm" value="✓ Calm" autocomplete="off">
+                          <input type="radio" class="btn-check" name="temperament" id="calm" value="✓ Calm" autocomplete="off" <%= data.temperament === "✓ Calm" ? "checked" : "" %>>
                           <label class="btn temperBtn" for="calm">Calm</label>
                   
-                          <input type="radio" class="btn-check" name="temperament" id="aggressive" value="⚠️ Aggressive" autocomplete="off">
+                          <input type="radio" class="btn-check" name="temperament" id="aggressive" value="⚠️ Aggressive" autocomplete="off"  <%= data.temperament === "⚠️ Aggressive" ? "checked" : "" %>>
                           <label class="btn temperBtn" for="aggressive">Aggressive</label>
                   
-                          <input type="radio" class="btn-check" name="temperament" id="active" value="✓ Active" autocomplete="off">
+                          <input type="radio" class="btn-check" name="temperament" id="active" value="✓ Active" autocomplete="off" <%= data.temperament === "✓ Active" ? "checked" : "" %>>
                           <label class="btn temperBtn" for="active">Active</label>
                       </div>
                   
@@ -52,37 +54,38 @@
                       id="strength"
                       name="strength"
                       style="min-width: 17rem"
+                      value=" <%= data.hiveStrength %> "
                     />
-                    <p class="mt-3">100%</p>
+                    <p class="mt-3"><%= data.hiveStrength %></p>
                   </div>
                   <!-- <div class="mt-4 d-flex flex-column"> -->
                     <div class="form-check d-flex justify-content-between  ">
                       <label class=" fs-2 mb-0" for="queen">
                         Queen
                       </label>
-                      <input class="form-check-input btn-lg my-3" type="checkbox" value="✓ Queen Spotted" id="queen" name="queen">
+                      <input class="form-check-input btn-lg my-3" type="checkbox" value="✓ Queen Spotted" id="queen" name="queen"  <%= data.queen ? 'checked' : '' %>>
                     </div>
                     <div class="form-check d-flex justify-content-between mb-2 ">
                       <p class="form-check-label fs-2 mb-1" for="queenCell">
                         Queen Cells
                       </p>
-                      <input class="form-check-input btn-lg my-3" type="checkbox" value="⚠️ Queen Cells" id="queenCell" name="queenCell">
+                      <input class="form-check-input btn-lg my-3" type="checkbox" value="⚠️ Queen Cells" id="queenCell" name="queenCell"  <%= data.queenCell ? 'checked' : '' %>>
                     </div>
                     <div class="form-check d-flex justify-content-between mb-2 ">
                       <p class="form-check-label fs-2 mb-1" for="eggs">
                         Eggs
                       </p>
-                      <input class="form-check-input btn-lg my-3" type="checkbox" value="✓ Eggs Spotted" id="eggs" name="eggs">
+                      <input class="form-check-input btn-lg my-3" type="checkbox" value="✓ Eggs" id="eggs" name="eggs"  <%= data.eggs ? 'checked' : '' %>>
                     </div>
                       <select name="brood" id="brood" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                        <option   selected disabled>Brood</option>
+                        <option   selected disabled><%= data.brood %></option>
                           <option value="✓ Normal Brood">Normal</option>
                           <option value="✓ Spotty Brood">Spotty</option>
                           <option value="✓ Compact Brood">Compact</option>
                         </select>
                   
                       <select name="disease" id="disease" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                        <option   selected disabled>Disease</option>
+                        <option   selected disabled><%= data.disease %></option>
                           <option value="⚠️ Varroa Mites">Varroa Mites</option>
                           <option value="⚠️ Chalkbrood">Chalkbrood</option>
                           <option value="⚠️ Stonebrood">Stonebrood</option>
@@ -91,7 +94,7 @@
                         </select>
                   
                       <select name="pests" id="pests" class="form-select mb-2  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                        <option   selected disabled>Pests</option>
+                        <option   selected disabled><%= data.pests %></option>
                           <option value="⚠️ Wax moths">Wax Moths</option>
                           <option value="⚠️ Mice">Mice</option>
                           <option value="⚠️ Hive Beetle">Hive Beetle</option>
@@ -104,6 +107,7 @@
                     class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
                     id="inspectionDate"
                     name="inspectionDate"
+                    value="<%= data.inspectionDate %>"
                   />
                 </form>
 
@@ -111,10 +115,10 @@
               <div class="d-flex justify-content-around mt-3">
                   <button
                       type="submit"
-                      form="inspection-form"
+                      form="edit-inspection-form"
                       class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
                       >
-                      ADD
+                      UPDATE
                   </button>
               </div> 
         </div>

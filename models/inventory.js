@@ -2,23 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Schema
-const harvestSchema = new Schema({
-    harvestType: {
+const inventorySchema = new Schema({
+
+    inventoryType: {
         type: String,
         required: true
     },
 
-    harvestAmount: {
+    inventoryAmount: {
         type: Number,
         required: true
     },
 
-    harvestDate: {
+    inventoryDate: {
         type: String,
-        required: true
+        required: false
     }
+
 });
 
 
 
-module.exports = mongoose.model('Harvest', harvestSchema);
+module.exports = mongoose.model('Inventory', inventorySchema);

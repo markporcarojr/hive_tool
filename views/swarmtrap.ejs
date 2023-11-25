@@ -4,15 +4,18 @@
     <div class="container text-center text-michgold ">
 
       <H1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Swarm Traps</H1>
-      <h5 class="card-title">November 13 - 2023</h5>
+      <h5 class="card-title mt-3" id="datetime""></h5>
         <div class="d-flex justify-content-around mt-4">
             <p class="card-text">📍 Fenton MI</p>
             <p class="card-text">56℉ 🌤️</p>
         </div>
+        <button class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill mb-3"onclick="filterSwarmByNumber()">Filter by Swarm Number</button>
          <!-- Swarm Card -->
-         <% data.forEach((swarm) => {%>
-            <div class="row row-cols-1 row-cols-lg-3 g-2">
-              <div class="col">
+         
+         <div class="row row-cols-1 row-cols-lg-3 g-2">
+              <% data.forEach((swarm) => {%>
+                
+              <div class="col" data-swarm-number="<%= swarm.swarmNumber %>">
                 <div class="container px-2" style="max-width: 500px">
                   <div class="card text-michgold border-michgold rounded-5 border-3">
                     <div class="card-body d-flex mx-3 justify-content-between">
@@ -202,7 +205,7 @@
                           </g>
                         </svg>
                       </div>
-                      <span class="ms-3 fs-4 fw-bold text-center mt-1">Trap <%= swarm.swarmNumber %></span>
+                      <span class="ms-3 fs-4 fw-bold text-center mt-1">Trap #<%= swarm.swarmNumber %></span>
                       <div class="mt-2">11/12/2023</div>
                     </div>
                     <div class="mb-2 p-2">
@@ -224,8 +227,8 @@
                   </div>
                 </div>
               </div>
+              <% }) %>
             </div>
-          <% }) %>
 
       
       <!-- Swarm Card End-->
@@ -246,5 +249,35 @@
     </div>
   
       <%- include("partials/footer")%>
+      <script>
+        function filterSwarmByNumber() {
+          // Prompt the user to enter a swarm number
+          var swarmNumber = prompt("Enter Swarm Number:");
+      
+          // Check if the user entered a value
+          if (swarmNumber !== null) {
+            // Convert the input to a number
+            swarmNumber = parseInt(swarmNumber);
+      
+            // Get all swarm card elements
+            var swarmCards = document.querySelectorAll('.col');
+      
+            // Loop through each swarm card
+            swarmCards.forEach(function(swarmCard) {
+              // Get the swarm number from the data attribute
+              var cardSwarmNumber = parseInt(swarmCard.getAttribute('data-swarm-number'));
+      
+              // Check if the swarm number matches the entered value
+              if (cardSwarmNumber === swarmNumber) {
+                // Show the matching swarm card
+                swarmCard.style.display = 'block';
+              } else {
+                // Hide non-matching swarm cards
+                swarmCard.style.display = 'none';
+              }
+            });
+          }
+        }
+      </script>
     </body>
   </html>

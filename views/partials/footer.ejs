@@ -36,3 +36,30 @@
     <!-- Copyright -->
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+          function updateDateTime() {
+          const now = new Date();
+
+          const optionsDate = {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+          };
+
+          const optionsTime = {
+              hour: 'numeric',
+              minute: 'numeric',
+              second: 'numeric',
+          };
+
+          const content = `${now.toLocaleDateString('en-US', optionsDate)}<br>${now.toLocaleTimeString('en-US', optionsTime)}`;
+
+          document.querySelector('#datetime').innerHTML = content;
+      }
+
+      setInterval(updateDateTime, 1000);
+
+  </script>
+  
+    
+  

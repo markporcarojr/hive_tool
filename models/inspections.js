@@ -1,27 +1,52 @@
 const mongoose = require('mongoose');
-const moment = require('moment');
 const Schema = mongoose.Schema;
 
 // Schema
-const Inspection = new Schema({
+const inspectionSchema = new Schema({
+
     hiveNumber: {
         type: Number,
         required: true
     },
-    breed: {
+
+    temperament: {
         type: String,
-        required: false
+        required: true
     },
-    hiveStrength: {
+    strength: {
         type: Number,
         required: true
     },
-    hiveDate: {
+    queen: {
         type: String,
         required: false
+    },
+    queenCell: {
+        type: String,
+        required: false
+    },
+    brood: {
+        type: String,
+        required: false
+    },
+    disease: {
+        type: String,
+        required: false
+    },
+    eggs: {
+        type: String,
+        required: false
+    },
+    pests: {
+        type: String,
+        required: false
+    },
+    inspectionDate: {
+        type: String,
+        required: true
     }
 });
 
 
 
-module.exports = mongoose.model('Inspection', Inspection);
+module.exports = mongoose.model('Inspection', inspectionSchema);

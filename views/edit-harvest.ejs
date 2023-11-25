@@ -8,7 +8,6 @@
           <h1>New Harvest</h1>
         </div>
         <div class="card-body">
-          <h5 class="card-title">November 13 - 2023</h5>
           <div class="d-flex justify-content-evenly mt-5">
             <p class="card-text">📍 Fenton MI</p>
             <p class="card-text">56℉ 🌤️</p>
@@ -17,7 +16,7 @@
 
         <!-- Forms -->
 
-        <form action="/harvest/update" method="post" id="edit-harvest-form">
+        <form action="/harvest/update/<%= data.id %>?_method=PUT" method="post" id="edit-harvest-form">
           <input type="hidden" name="_method" value="PUT">
           <select name="harvestType" id="harvestType" class="form-select fs-5  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
             <option  value="<%= data.harvestType %>" selected disabled><%= data.harvestType %></option>
@@ -58,7 +57,7 @@
        
         <button
           type="submit"
-          form="editharvest-form"
+          form="edit-harvest-form"
           class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
         >
           UPDATE

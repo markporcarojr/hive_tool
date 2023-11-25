@@ -8,7 +8,6 @@
           <h1>New Equipment</h1>
         </div>
         <div class="card-body">
-          <h5 class="card-title mt-3" id="datetime""></h5>
           <div class="d-flex justify-content-evenly mt-5">
             <p class="card-text">📍 Fenton MI</p>
             <p class="card-text">56℉ 🌤️</p>
@@ -17,23 +16,26 @@
 
         <!-- Forms -->
 
-        <form action="/new-inventory" method="post" id="inventory-form">
+        <form action="/inventory/update/<%= data.id %>?_method=PUT" method="post" id="edit-inventory-form">
+          <input type="hidden" name="_method" value="PUT">
           <div class=" text-center m-3 fs-3 fw-semibold">
-            <label for="inventoryType" class="form-label text-center mb-3">Equipment Name</label>
+            <label for="inventoryType" class="form-label text-center mb-3"><%= data.inventoryType %></label>
             <input
               type="text"
-              class="form-control bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold text-center"
+              class="form-control bg-inputgrey border-3 text-center border-michgold rounded-4 opacity-50 fw-bold"
               id="inventoryType"
               name="inventoryType"
+              value="<%= data.inventoryType %>"
             />
           </div>
-          <div class="text-center m-3 fs-3 fw-semibold ">
+          <div class="text-center m-3 fs-3 fw-semibold mb-5">
             <label for="inventoryAmount" class="form-label">Quantity</label>
             <input
               type="number"
               class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
               id="inventoryAmount"
               name="inventoryAmount"
+              value="<%= data.inventoryAmount %>"
             />
           </div>
           <label for="inventoryDate" class="form-label fs-3 fw-semibold my-3">Date</label>
@@ -42,6 +44,7 @@
                 class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
                 id="inventoryDate"
                 name="inventoryDate"
+                value="<%= data.inventoryDate %>"
                 
               />
           
@@ -56,7 +59,7 @@
        
         <button
           type="submit"
-          form="inventory-form"
+          form="edit-inventory-form"
           class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
         >
           ADD
