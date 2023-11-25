@@ -1,14 +1,16 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
 
-    <div class="container text-center text-michgold ">
-
-      <H1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Mark's Apiary</H1>
-      <h5 class="card-title mt-3" id="datetime"></h5>
-        <div class="d-flex justify-content-around mt-4">
-            <p class="card-text">📍 Fenton MI</p>
-            <p class="card-text">56℉ 🌤️</p>
-        </div>
+    <div class="container text-center text-michgold">
+      <div class=""  style="background-image: url(images/honeycomb.jpeg)">
+  
+        <H1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Mark's Apiary</H1>
+        <h5 class="card-title mt-3" id="datetime"></h5>
+          <div class="d-flex justify-content-around mt-4">
+              <p class="card-text">📍 Fenton MI</p>
+              <p class="card-text">56℉ 🌤️</p>
+          </div>
+    </div>
       <div class="row row-cols-1 row-cols-lg-3 g-2">
         <!-- insert cards here -->
         <% data.forEach((hive) => {%>

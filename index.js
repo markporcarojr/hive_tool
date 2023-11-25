@@ -12,25 +12,19 @@ const Swarm = require('./models/swarm');
 const Harvest = require('./models/harvest');
 const Treatment = require('./models/treatment');
 const methodOverride = require('method-override');
-
-app.use(express.static(path.join(__dirname, '/public')));
-// sets the ejs engine
-app.set('view engine', 'ejs');
+const url = 'mongodb+srv://markporcarojr:Hivetool19!@hivetooldb.9hg6xxt.mongodb.net/HiveTool?retryWrites=true&w=majority'
 
 // MIDDLEWARE
 
-// Method-override
+app.use(express.static(path.join(__dirname, '/public')));
+app.set('view engine', 'ejs');
 app.use(methodOverride('_method'))
-// Body parser middleware
-
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
 app.use(bodyParser.json())
 
-// Database url
-const url = 'mongodb+srv://markporcarojr:Hivetool19!@hivetooldb.9hg6xxt.mongodb.net/HiveTool?retryWrites=true&w=majority'
+
+
+
 
 ///connecting application with database
 mongoose.connect(url, {
