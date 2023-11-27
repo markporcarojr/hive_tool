@@ -4,7 +4,8 @@
   "description": "Hive Management tool",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "build": "yarn"
   },
   "author": "Mark Porcaro",
   "license": "ISC",

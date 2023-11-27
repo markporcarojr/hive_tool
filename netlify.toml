@@ -1,9 +1,0 @@
-[build]
-  command = "npm start"
-  functions = "functions"  # If you have serverless functions
-
-[context.production.environment]
-  MONGODB_URI = "<your-mongodb-connection-string>"
-
-[context.branch-deploy.environment]
-  MONGODB_URI = "<your-mongodb-connection-string>"
