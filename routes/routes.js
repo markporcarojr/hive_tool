@@ -63,6 +63,7 @@ router.get(
     passport.authenticate('google', { failureRedirect: '/login' }), // Use the passport.authenticate middleware
     (req, res) => {
         // This function will only be called if authentication is successful
+        console.log('Google authentication successful');
         res.redirect('/'); // Redirect to the home page or any desired route
     }
 );

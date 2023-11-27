@@ -1,7 +1,7 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
     <div class="container text-center text-michgold ">
-        <H1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Inspections</H1>
+        <h1 class="text-center text-white  outlined-text display-1 fw-bold sticky-top">Inspections</h1>
         <h5 class="card-title mt-3" id="datetime"></h5>
         <div class="d-flex justify-content-around mt-4">
             <p class="card-text">📍 Fenton MI</p>
@@ -9,7 +9,7 @@
         </div>
         <!-- Add this button inside your HTML -->
         <div class="d-flex justify-content-center mb-2">
-          <button onclick="filterByHiveNumber()" id="filterInpection" class="btn btn-sm px-3 btn-michgold btn-gold rounded-start-pill"  >Filter by Hive #</button>
+          <button id="filterInpection" class="btn btn-sm px-3 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
           <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-50 fw-bold">
         </div>
         
@@ -199,7 +199,7 @@
                             <form action="/inspection/delete/<%= inspection.id %>?_method=DELETE" method="post">
                               <input type="hidden" name="_method"
                               value="DELETE">
-                              <input type="submit" value="DELETE" name="" id="" class="btn rounded-5 btn-danger">
+                              <input type="submit" value="DELETE"  class="btn rounded-5 btn-danger">
                             </form>
                             <a
                               href="/inspection/edit/<%= inspection.id %>"
