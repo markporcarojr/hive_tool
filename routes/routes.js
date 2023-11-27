@@ -56,13 +56,17 @@ router.get('/auth/google',
 );
 
 // Google Sign-In callback route
-router.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+// Google Sign-In callback route
+router.get(
+    '/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }), // Use the passport.authenticate middleware
     (req, res) => {
-        // Successful authentication, redirect to the home page
-        res.redirect('/');
+        // This function will only be called if authentication is successful
+        res.redirect('/'); // Redirect to the home page or any desired route
     }
 );
+
+
 
 
 

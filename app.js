@@ -1,6 +1,7 @@
 // app.js
 const express = require('express')
 const app = express();
+
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -8,11 +9,12 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 const routes = require('./routes/routes');
-// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const flash = require('connect-flash');
 require('dotenv').config();
+
 
 
 // MIDDLEWARE
@@ -28,9 +30,45 @@ app.use(session({
     saveUninitialized: false,
 
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
+// GOOGLE
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:3000/auth/google/callback',
+},
+    async (accessToken, refreshToken, profile, done) => {
+        const googleId = profile.id;
+        const email = profile.emails[0].value; // Assuming you want to use the first email
+
+        try {
+            const user = await User.findOrCreate({ email, googleId });
+            return done(null, user);
+        } catch (error) {
+            return done(error, null);
+        }
+    }
+));
+
+// Serialize user for session
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findById(id)
+        .exec()
+        .then(user => {
+            done(null, user);
+        })
+        .catch(err => {
+            done(err, null);
+        });
+});
 
 // LOCAL STRATEGY
 passport.use(new LocalStrategy({
@@ -40,15 +78,6 @@ passport.use(new LocalStrategy({
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-// GOOGLE STRATEGY
-// passport.use(new GoogleStrategy({
-//     clientID: GOOGLE_CLIENT_ID,
-//     clientSecret: GOOGLE_CLIENT_SECRET,
-//     callbackURL: 'http://localhost:3000/auth/google/callback', // Adjust the callback URL based on your application
-// },
-
-
 
 app.use((req, res, next) => {
     res.locals.user = req.user;
