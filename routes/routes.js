@@ -126,11 +126,11 @@ router.get('/inspection-form', ensureAuthenticated, (req, res) => {
     res.render('inspection-form', { title: 'New Inspection' });
 });
 
-// Route to Inspection
-router.get('/inspection', ensureAuthenticated, (req, res) => {
+// Route to Inspections
+router.get('/inspections', ensureAuthenticated, (req, res) => {
     Inspection.find({ userId: req.user._id })
         .then(data => {
-            res.render('inspection', { title: 'Inspection', data: data });
+            res.render('inspections', { title: 'Inspections', data: data });
         })
         .catch(err => console.log(err));
 });
@@ -300,7 +300,7 @@ router.post('/new-inventory', ensureAuthenticated, (req, res) => {
 router.post('/new-inspection', ensureAuthenticated, (req, res) => {
     const dateFieldName = 'inspectionDate';
     const userId = req.user._id;
-    universalController.saveNewData(req, res, Inspection, '/inspection', dateFieldName, userId);
+    universalController.saveNewData(req, res, Inspection, '/inspections', dateFieldName, userId);
 });
 
 // Route for Saving New Swarm
@@ -353,7 +353,7 @@ router.put('/inventory/update/:id', ensureAuthenticated, (req, res) => {
 router.put('/inspection/update/:id', ensureAuthenticated, (req, res) => {
     const fields = ['hiveNumber', 'temperament', 'strength', 'queen', 'queenCell', 'brood', 'disease', 'pests', 'eggs'];
     const dateFieldName = 'inspectionDate';
-    universalController.editData(Inspection, req.params.id, req.body, res, '/inspection', fields, dateFieldName);
+    universalController.editData(Inspection, req.params.id, req.body, res, '/inspections', fields, dateFieldName);
 });
 
 // Edit Swarm
@@ -396,7 +396,7 @@ router.delete('/inventory/delete/:id', ensureAuthenticated, (req, res) => {
 
 // Delete Inspection
 router.delete('/inspection/delete/:id', ensureAuthenticated, (req, res) => {
-    universalController.deleteItem(req, res, Inspection, '/inspection');
+    universalController.deleteItem(req, res, Inspection, '/inspections');
 });
 
 // Delete Swarm
