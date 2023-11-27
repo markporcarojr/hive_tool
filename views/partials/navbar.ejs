@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg bg-michgold sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand outlined-text text-white" href="#">Hive Tool</a>
+    <div>
+      <img class="ms-2" src="/images/hive_tool_noback_2.png" alt="" />
+      <p class="mb-0 fw-bold">HIVE TOOL</p>
+    </div>
     <button
       class="navbar-toggler"
       type="button"
@@ -21,7 +24,11 @@
         <a class="nav-link" href="harvest">Harvest</a>
         <a class="nav-link" href="swarmtrap">Swarm Traps</a>
         <a class="nav-link" href="feeding">Feeding</a>
-        <a class="nav-link" href="login">Login</a>
+        <% if (user) { %>
+        <a class="nav-link" id="logoutButton" href="/logout">Logout</a>
+        <% } else { %>
+        <a class="nav-link" href="/login">Login</a>
+        <% } %>
       </div>
     </div>
   </div>

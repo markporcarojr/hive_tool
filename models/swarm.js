@@ -16,6 +16,11 @@ const swarmSchema = new Schema({
     swarmDate: {
         type: String,
         required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Assuming your user model is named 'User'
+        required: true
     }
 });
 

@@ -2,9 +2,9 @@
   "name": "hive_tool",
   "version": "1.0.0",
   "description": "Hive Management tool",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon app.js"
   },
   "author": "Mark Porcaro",
   "license": "ISC",
@@ -13,11 +13,19 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "icons": "^1.0.0",
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
-    "mongoose": "^8.0.1"
+    "mongoose": "^8.0.1",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0"
   }
 }

@@ -8489,6 +8489,11 @@ fieldset:disabled .btn {
   min-width: 100vw !important;
 }
 
+.hive-image {
+  background-image: url(/images/honeycomb.jpeg); /* Specify the path to your image */
+  background-size: cover; /* <------ */
+}
+
 .h-25 {
   height: 25% !important;
 }
@@ -12996,16 +13001,6 @@ footer {
   bottom: 0;
   width: 100vw;
   background-color: #ffcb05;
-}
-
-.hive-image {
-  /* cardSet the size and other styles for your container */
-  background-image: url(/images/honeycomb.jpeg); /* Specify the path to your image */
-  background-size: cover; /* Adjust the background size to cover the container */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
-  /* You can add more styles as needed */
-  background-attachment: fixed;
 }
 
 .btn-gold:hover {

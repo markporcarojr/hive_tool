@@ -43,17 +43,6 @@ footer {
   width: 100vw;
   background-color: #ffcb05;
 }
-.hive-image {
-  /* cardSet the size and other styles for your container */
-  // width: 100%;
-  // height: 300px;
-  background-image: url(/images/honeycomb.jpeg); /* Specify the path to your image */
-  background-size: cover; /* Adjust the background size to cover the container */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
-  /* You can add more styles as needed */
-  background-attachment: fixed;
-}
 
 .btn-gold:hover {
   background-color: rgba(255, 208, 30, 0.75);
@@ -65,25 +54,6 @@ input[type="range"] {
 
 #facebookBtn:hover {
   background-color: rgb(217, 217, 217);
-}
-
-.background-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: url("/images/honeycomb.jpeg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
 }
 
 .temperBtn {
