@@ -8490,8 +8490,9 @@ fieldset:disabled .btn {
 }
 
 .hive-image {
-  background-image: url(/images/honeycomb.jpeg); /* Specify the path to your image */
-  background-size: cover; /* <------ */
+  background-image: url(/images/honeycomb.jpeg);
+  background-size: cover;
+  background-position: center 30%;
 }
 
 .h-25 {

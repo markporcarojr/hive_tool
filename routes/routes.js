@@ -73,6 +73,15 @@ router.get(
 
 // ********************************* PAGE ROUTING *******************************************
 
+
+
+
+
+// Privacy Policy
+router.get('/privacy-policy', (req, res) => {
+    res.render('privacy-policy');
+});
+
 // Signup Page
 router.get('/signup', (req, res) => {
     res.render('signup', { title: 'Sign Up' });

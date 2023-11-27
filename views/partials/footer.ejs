@@ -32,32 +32,37 @@
     <div class="text-center text-dark p-3" ;">
       © 2023 Copyright:
       <a class="text-dark" href="https://marks-bees.netlify.app/#/">Porcaro Farms</a>
+      <div>
+        <a  href="/privacy-policy">Privacy Policy</a>
+      </div>
     </div>
     <!-- Copyright -->
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-          function updateDateTime() {
-          const now = new Date();
+        function updateDateTime() {
+    const now = new Date();
 
-          const optionsDate = {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-          };
+    const optionsDate = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    };
 
-          const optionsTime = {
-              hour: 'numeric',
-              minute: 'numeric',
-              second: 'numeric',
-          };
+    const optionsTime = {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+    };
 
-          const content = `${now.toLocaleDateString('en-US', optionsDate)}<br>${now.toLocaleTimeString('en-US', optionsTime)}`;
+    const content = `${now.toLocaleDateString('en-US', optionsDate)}`;
 
-          document.querySelector('#datetime').innerHTML = content;
-      }
+    document.querySelector('#datetime').innerHTML = content;
+}
 
-      setInterval(updateDateTime, 1000);
+// Call the function once when the page loads
+updateDateTime();
+
 
   </script>
   
