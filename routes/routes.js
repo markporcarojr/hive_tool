@@ -79,7 +79,7 @@ router.get(
 
 // Privacy Policy
 router.get('/privacy-policy', (req, res) => {
-    res.render('privacy-policy');
+    res.render('privacy-policy', { title: 'Privacy Policy' });
 });
 
 // Signup Page
