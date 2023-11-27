@@ -30,12 +30,13 @@ router.post("/signup", async (req, res) => {
         );
         req.login(user, (err) => {
             if (err) {
-                return res.json({ success: false, message: err });
+                res.redirect('/signup');
+
             }
             res.redirect('/login');
         });
     } catch (err) {
-        res.json({ success: false, message: "Your account could not be saved. Error: " + err });
+        res.redirect('/signup');
     }
 });
 
