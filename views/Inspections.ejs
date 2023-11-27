@@ -7,15 +7,11 @@
             <p class="card-text">📍 Fenton MI</p>
             <p class="card-text">56℉ 🌤️</p>
         </div>
-        <!-- Add this button inside your HTML -->
-        <div class="d-flex justify-content-center mb-2">
-          <button id="filterInpection" class="btn btn-sm px-3 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
-          <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-50 fw-bold">
-        </div>
+        
         
         <div class="row row-cols-1 row-cols-lg-3 g-2" >
               <% data.forEach((inspection) => {%>
-                    <div class="col" data-hive-number=" <%= inspection.hiveNumber %> ">
+                    <div class="col" >
                       <div class="container text-start px-2" style="max-width: 500px">
                         <div class="card border-michgold border-3 rounded-5 m- mx-auto">
                           <div
@@ -232,37 +228,8 @@
             </div>
         
         
-</div>
+    </div>
     <%- include("partials/footer")%>
-    <script>
-      function filterByHiveNumber() {
-        // Prompt the user to enter a hive number
-        // var hiveNumber = prompt("Enter Hive Number:");
-        var hiveNumber = document.getElementById('hiveNumberInput').value;
-        // Check if the user entered a value
-        if (hiveNumber !== null) {
-          // Convert the input to a number
-          hiveNumber = parseInt(hiveNumber);
     
-          // Get all hive card elements
-          var hiveCards = document.querySelectorAll('.col');
-    
-          // Loop through each hive card
-          hiveCards.forEach(function(hiveCard) {
-            // Get the hive number from the data attribute
-            var cardHiveNumber = parseInt(hiveCard.getAttribute('data-hive-number'));
-    
-            // Check if the hive number matches the entered value
-            if (cardHiveNumber === hiveNumber) {
-              // Show the matching hive card
-              hiveCard.style.display = 'block';
-            } else {
-              // Hide non-matching hive cards
-              hiveCard.style.display = 'none';
-            }
-          });
-        }
-      }
-    </script>
     </body>
   </html>
