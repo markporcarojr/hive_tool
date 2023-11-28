@@ -4,12 +4,8 @@
     <div class="container text-center text-michgold">
       <div class="header-image text-white my-3 border rounded-2"  style="background-image: url(/static/images/apiary.jpeg)">
   
-        <H1 class="text-center text-white mt-2 outlined-text display-1 fw-bold sticky-top apiary" id="iconPrompt">Apiary</H1>
-        <h5 class="card-title mt-3 fs-2 outlined-text" id="datetime"></h5>
-          <div class="d-flex justify-content-between text-white outlined-text fs-3 fw-bold mt-4 me-2">
-              <p class="card-text ms-2" id="city"></p>
-              <p class="card-text" id="temp"><span id="clouds">🌤️</span></p>
-          </div>
+        <%- include("partials/title")%>
+
     </div>
       <div class="row row-cols-1 row-cols-lg-3 g-2">
         <!-- insert cards here -->
@@ -69,62 +65,6 @@
     </div>
   
       <%- include("partials/footer")%>
-      <script>
-          
-
-          // const lat = 42.8478072;
-          // const long = -83.4481557;
-          // const apiKey = '<%= process.env.WEATHER_KEY %>';
-          // const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&q=michigan';
-
-          // async function checkWeather(){
-          //   const response = await fetch(apiUrl + `&appid=${apiKey}` );
-          //   let data = await response.json();
-
-          //   console.log(data);
-          //   document.querySelector('#city').innerHTML = data.name;
-          //   document.querySelector('#temp').innerHTML = Math.round(data.main.temp) + '℉';
-          //   document.querySelector('#clouds').innerHTML = data.clouds;
-
-          // }
-
-          // checkWeather();
-
-          const apiKey = '<%= process.env.WEATHER_KEY %>';
-          const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial';
-
-          async function getCurrentLocation() {
-            return new Promise((resolve, reject) => {
-              navigator.geolocation.getCurrentPosition(resolve, reject);
-            });
-          }
-
-          async function checkWeather() {
-            try {
-              const position = await getCurrentLocation();
-              const lat = position.coords.latitude;
-              const lon = position.coords.longitude;
-
-              const response = await fetch(`${apiUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`);
-              const data = await response.json();
-
-              console.log(data);
-              document.querySelector('#city').innerHTML = data.name;
-              document.querySelector('#temp').innerHTML = Math.round(data.main.temp) + '℉';
-              document.querySelector('#clouds').innerHTML = data.clouds.all;
-            } catch (error) {
-              console.error('Error getting location or weather data:', error);
-            }
-          }
-
-          document.addEventListener('DOMContentLoaded', checkWeather);
-
-
-
-
-
-
-         
-      </script>
+      
     </body>
   </html>

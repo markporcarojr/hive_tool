@@ -1,18 +1,13 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
     <div class="container text-center text-michgold " >
-        <h1 class="text-center text-white  outlined-text display-1 pt-3 fw-bold sticky-top">Inspections</h1>
-        <h5 class="card-title mt-3" id="datetime"></h5>
-        <div class="d-flex justify-content-around mt-4">
-            <p class="card-text">📍 Fenton MI</p>
-            <p class="card-text">56℉ 🌤️</p>
-        </div>
-        <!-- Add this button inside your HTML -->
+      <%- include("partials/title")%>
+
         <div>
-          <button id="allInspections" class="btn btn-sm px-3 btn-michgold btn-gold rounded-pill">Show All Inspections</button>
+          <button id="allInspections" class="btn btn-sm mb-2 px-3 btn-michgold btn-gold rounded-pill">Show All Inspections</button>
         </div>
         <div class="d-flex justify-content-center mb-2">
-          <button id="filterInpection" class="btn btn-sm px-3 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
+          <button id="filterInpection" class="btn btn-sm px-2 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
           <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-50 fw-bold">
         </div>
         

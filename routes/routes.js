@@ -187,7 +187,7 @@ router.get('/treatment-form', ensureAuthenticated, (req, res) => {
 router.get('/treatment', ensureAuthenticated, (req, res) => {
     Treatment.find({ userId: req.user._id })
         .then(data => {
-            res.render('treatment', { title: 'Treatment', data: data });
+            res.render('treatment', { title: 'Treatments', data: data });
         })
         .catch(err => console.log(err));
 });

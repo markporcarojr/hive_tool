@@ -1,12 +1,8 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
     <div class="container text-center text-michgold "> 
-      <H1 class="text-center text-white pt-3 outlined-text display-1 fw-bold sticky-top">Swarm Traps</H1>
-      <h5 class="card-title mt-3" id="datetime""></h5>
-        <div class="d-flex justify-content-around mt-4">
-            <p class="card-text">📍 Fenton MI</p>
-            <p class="card-text">56℉ 🌤️</p>
-        </div>
+      <%- include("partials/title")%>
+
         <button class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill mb-3" onclick="filterSwarmByNumber()">Filter by Swarm Number</button>
          <!-- Swarm Card -->
          
@@ -204,7 +200,7 @@
                         </svg>
                       </div>
                       <span class="ms-3 fs-4 fw-bold text-center mt-1">Trap #<%= swarm.swarmNumber %></span>
-                      <div class="mt-2">11/12/2023</div>
+                      <div class="mt-2"><%= swarm.swarmDate %></div>
                     </div>
                     <div class="mb-2 p-2">
                       <%= swarm.location %>

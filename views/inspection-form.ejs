@@ -5,13 +5,8 @@
     <section>
         <div class="container" style="max-width: 500px;">
             <div class="card text-michgold text-center mt-2" style="max-width: 90vw;">
-                <h1>New Inspection</h1>
-                <h5 class="card-title mt-3" id="datetime"></h5>
-                <div class="d-flex justify-content-between mt-3">
-                  <p class="card-text">📍 Fenton MI</p>
-                  <p class="card-text">56℉ 🌤️</p>
-                </div>
-                
+              <%- include("partials/title")%>
+              
                 <form action="/new-inspection" method="post" id="inspection-form">
                   <div class="text-center m-3">
                     <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"

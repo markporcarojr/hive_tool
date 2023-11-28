@@ -1,15 +1,12 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
 
-    <!-- <H1 class="text-center display-1 text-michgold mt-4">LOGIN</H1> -->
-      
-
- 
- 
-
+            <div class="container d-flex justify-content-center mb-0">
+              <img src="/static/images/hive_tool_xl_2.png" alt="" style="width: 200px ; height: 200px;">
+            </div>
                 <!-- Login.ejs -->
           <form action="/login" method="post">
-            <div class="container mt-5 d-flex justify-content-center" style="max-width: 500px;">
+            <div class="container mt-2 d-flex justify-content-center" style="max-width: 500px;">
               <div class="form-group mt-4 text-center">
                 <input type="email" id="login-email" name="email" class="m-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3" placeholder="Email...">
                 <input type="password" id="login-password" name="password" class="m-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3" placeholder="Password...">
@@ -20,7 +17,7 @@
             <div class="container mt-5 d-flex justify-content-center">
               <button
                     type="submit"
-                    class="btn px-5 m-5 btn-michgold btn-gold rounded-pill"
+                    class="btn px-5 m-5 mt-1 btn-michgold btn-gold rounded-pill"
                   >
                     LOGIN
                   </button>

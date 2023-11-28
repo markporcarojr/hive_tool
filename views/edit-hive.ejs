@@ -7,21 +7,14 @@
         class="card text-michgold text-center mt-2 mb-5"
         style="max-width: 90vw"
       >
-        <div class="card-header fw-bold">
-          <h1>Edit Hive</h1>
-        </div>
-        <div class="card-body">
-          <div class="d-flex justify-content-evenly mt-5">
-            <p class="card-text">📍 Fenton MI</p>
-            <p class="card-text">56℉ 🌤️</p>
-          </div>
-        </div>
+      <%- include("partials/title")%>
+
 
         <!-- Forms -->
 
 
         <form action="/hive/update/<%= data.id %>?_method=PUT" method="post" id="edit-hive-form">
-          <div class="text-center m-3">
+          <div class="text-center m-3 mt-0">
             <input type="hidden" name="_method" value="PUT">
     <!-- * -->
             <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"

@@ -2,12 +2,8 @@
   <%- include("partials/navbar")%>
 
     <div class="container text-center text-michgold ">
-      <H1 class="text-center text-white pt-3 outlined-text display-1 fw-bold sticky-top">Inventory</H1>
-      <h5 class="card-title mt-3" id="datetime"></h5>
-        <div class="d-flex justify-content-around mt-4">
-            <p class="card-text">📍 Fenton MI</p>
-            <p class="card-text">56℉ 🌤️</p>
-        </div>
+      <%- include("partials/title")%>
+
         <div class="row row-cols-1 row-cols-lg-3 g-2">
           <!-- Inventory Card -->
           <% data.forEach((inventory) => {%>

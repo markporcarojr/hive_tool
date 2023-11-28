@@ -96,13 +96,3 @@ function showAllHives() {
     hiveCards.forEach(hiveCard => hiveCard.style.display = 'block');
 
 };
-
-
-
-
-
-
-
-
-
-
