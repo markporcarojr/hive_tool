@@ -14,6 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
+
 require('dotenv').config();
 
 
@@ -49,7 +50,7 @@ app.use(passport.session());
 
 
 
-// GOOGLE
+// GOOGLE STRATEGY
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,

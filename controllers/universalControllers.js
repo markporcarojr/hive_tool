@@ -60,4 +60,7 @@ function deleteItem(req, res, Model, redirectUrl) {
 }
 
 
+
+
+
 module.exports = { saveNewData, editData, deleteItem };

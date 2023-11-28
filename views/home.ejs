@@ -7,9 +7,8 @@
         <H1 class="text-center text-white mt-2 outlined-text display-1 fw-bold sticky-top apiary" id="iconPrompt">Apiary</H1>
         <h5 class="card-title mt-3 fs-2 outlined-text" id="datetime"></h5>
           <div class="d-flex justify-content-between text-white outlined-text fs-3 fw-bold mt-4 me-2">
-              <p class="card-text">📍 Fenton MI</p>
-              <p class="card-text">56℉ 🌤️</p>
-              <p class="card-text" ></p>
+              <p class="card-text ms-2" id="city"></p>
+              <p class="card-text" id="temp"><span id="clouds">🌤️</span></p>
           </div>
     </div>
       <div class="row row-cols-1 row-cols-lg-3 g-2">
@@ -71,24 +70,61 @@
   
       <%- include("partials/footer")%>
       <script>
+          
 
-          document.addEventListener('DOMContentLoaded', function () {
-            // Get the icon prompt element
-            const iconPrompt = document.getElementById('iconPrompt');
+          // const lat = 42.8478072;
+          // const long = -83.4481557;
+          // const apiKey = '<%= process.env.WEATHER_KEY %>';
+          // const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial&q=michigan';
 
-            // Add a click event listener to the icon prompt
-            iconPrompt.addEventListener('click', function () {
-              // Prompt the user for a name
-              const userName = prompt('Please enter your name:');
+          // async function checkWeather(){
+          //   const response = await fetch(apiUrl + `&appid=${apiKey}` );
+          //   let data = await response.json();
 
-              // Update the content if a name is provided
-              if (userName !== null && userName.trim() !== '') {
-                // Update the content before "Apiary"
-                const apiaryTitle = document.querySelector('.apiary');
-                apiaryTitle.textContent = `${userName.trim()} Apiary`;
-              }
+          //   console.log(data);
+          //   document.querySelector('#city').innerHTML = data.name;
+          //   document.querySelector('#temp').innerHTML = Math.round(data.main.temp) + '℉';
+          //   document.querySelector('#clouds').innerHTML = data.clouds;
+
+          // }
+
+          // checkWeather();
+
+          const apiKey = '<%= process.env.WEATHER_KEY %>';
+          const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?units=imperial';
+
+          async function getCurrentLocation() {
+            return new Promise((resolve, reject) => {
+              navigator.geolocation.getCurrentPosition(resolve, reject);
             });
-          });
+          }
+
+          async function checkWeather() {
+            try {
+              const position = await getCurrentLocation();
+              const lat = position.coords.latitude;
+              const lon = position.coords.longitude;
+
+              const response = await fetch(`${apiUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`);
+              const data = await response.json();
+
+              console.log(data);
+              document.querySelector('#city').innerHTML = data.name;
+              document.querySelector('#temp').innerHTML = Math.round(data.main.temp) + '℉';
+              document.querySelector('#clouds').innerHTML = data.clouds.all;
+            } catch (error) {
+              console.error('Error getting location or weather data:', error);
+            }
+          }
+
+          document.addEventListener('DOMContentLoaded', checkWeather);
+
+
+
+
+
+
+         
       </script>
     </body>
   </html>
