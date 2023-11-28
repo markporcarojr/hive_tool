@@ -210,7 +210,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: "Josefin Sans", sans-serif;
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -8492,8 +8492,7 @@ fieldset:disabled .btn {
   min-width: 100vw !important;
 }
 
-.hive-image {
-  background-image: url(/images/honeycomb.jpeg);
+.header-image {
   background-size: cover;
   background-position: center 30%;
 }

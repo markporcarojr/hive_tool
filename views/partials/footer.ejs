@@ -1,70 +1,57 @@
-<footer class="text-center text-lg-end mt-5">
-    <div class="container-fluid  d-flex justify-content-center text-lg-end p-2 my-1 fa-stack">
-     
-      <a href="http://www.facebook.com">
-        <span class="fa-stack fa-l">
-          <i class="fa-solid fa-circle fa-stack-2x" style="color: #00274c;"></i>
-          <i class="fa-solid fab fa-facebook fa-stack-1x fa-inverse"></i>
-        </span>
+<footer class="text-center mt-5">
+  <div class="container d-flex flex-column align-items-center">
+    <!-- Social Media Icons -->
+    <div class="d-flex gap-2 mt-1">
+      <a href="http://www.facebook.com" class="text-dark">
+        <i class="fab fa-facebook fa-2x"></i>
       </a>
-      <a href="http://www.youtube.com">
-        <span class="fa-stack fa-l">
-          <i class="fa-solid fa-circle fa-stack-2x" style="color: #00274c;"></i>
-          <i class="fa-solid fab fa-youtube fa-stack-1x fa-inverse"></i>
-        </span>
+      <a href="http://www.youtube.com" class="text-dark">
+        <i class="fab fa-youtube fa-2x"></i>
       </a>
-      
-      <a href="http://www.instagram.com">
-        <span class="fa-stack fa-l">
-          <i class="fa-solid fa-circle fa-stack-2x" style="color: #00274c;"></i>
-          <i class="fa-solid fab fa-instagram fa-stack-1x fa-inverse"></i>
-        </span>
+      <a href="http://www.instagram.com" class="text-dark">
+        <i class="fab fa-instagram fa-2x"></i>
       </a>
-      <a href="http://www.twitter.com">
-        <span class="fa-stack fa-l">
-          <i class="fa-solid fa-circle fa-stack-2x" style="color: #00274c;"></i>
-          <i class="fa-solid fab fa-twitter fa-stack-1x fa-inverse"></i>
-        </span>
+      <a href="http://www.twitter.com" class="text-dark">
+        <i class="fab fa-twitter fa-2x"></i>
       </a>
     </div>
-    
+
     <!-- Copyright -->
-    <div class="text-center text-dark p-3" ;">
-      © 2023 Copyright:
-      <a class="text-dark" href="https://marks-bees.netlify.app/#/">Porcaro Farms</a>
+    <div class="text-dark">
+      <p class="mb-0">
+        © 2023 Copyright:
+        <a href="https://marks-bees.netlify.app/#/" class="text-dark"
+          >Porcaro Farms</a
+        >
+      </p>
       <div>
-        <a  href="/privacy-policy">Privacy Policy</a>
+        <a href="/privacy-policy" class="text-dark">Privacy Policy</a>
       </div>
     </div>
-    <!-- Copyright -->
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-        function updateDateTime() {
-        const now = new Date();
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function updateDateTime() {
+    const now = new Date();
 
-        const optionsDate = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        };
+    const optionsDate = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
 
-        const optionsTime = {
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-        };
+    const optionsTime = {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
 
-        const content = `${now.toLocaleDateString('en-US', optionsDate)}`;
+    const content = `${now.toLocaleDateString("en-US", optionsDate)}`;
 
-        document.querySelector('#datetime').innerHTML = content;
-}
+    document.querySelector("#datetime").innerHTML = content;
+  }
 
-// Call the function once when the page loads
-updateDateTime();
-
-
-  </script>
-  
-    
-  
+  // Call the function once when the page loads
+  updateDateTime();
+</script>
