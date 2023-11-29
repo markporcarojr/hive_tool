@@ -30,14 +30,17 @@
             />
           </div>
           <div class="text-center m-3">
-            <label for="breed" class="form-label fs-3 fw-semibold">Breed</label>
-            <input
-              type="text"
-              class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-              id="breed"
-              name="breed"
-              value="<%= data.breed %>"
-            />
+            <label for="breed" class="form-label mb-3 fs-3 fw-semibold">Breed</label>
+              <select name="breed" id="breed" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
+                <option   selected disabled><%= data.breed %></option>
+                  <option value="Unknown">Unknown</option>
+                  <option value="Italian">Italian</option>
+                  <option value="Carniolan">Carniolan</option>
+                  <option value="Buckfast">Buckfast</option>
+                  <option value="Russian">Russian</option>
+                  <option value="German">German</option>
+                  <option value="Caucasian">Caucasian</option>
+                </select>
             <label for="hiveDate" class="form-label fs-3 fw-semibold"
               >Date</label
             >
