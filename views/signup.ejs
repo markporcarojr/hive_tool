@@ -1,31 +1,60 @@
 <!-- signup.ejs -->
 <%- include("partials/header") %> <%- include("partials/navbar") %>
 
-<div
-  class="container mt-5 d-flex justify-content-center"
-  style="max-width: 500px"
->
+<div class="container d-flex justify-content-center mb-0">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="
+        /static/images/hive_tool@1x.webp  400w,
+        /static/images/hive_tool@2x.webp  800w,
+        /static/images/hive_tool@3x.webp 1200w
+      "
+      sizes="
+    (max-width: 500px) 100vw,
+    (max-width: 700px) 50vw,
+    33vw
+  "
+    />
+    <img
+      src="/static/images/hive_tool@1x.png"
+      alt=""
+      srcset="
+        /static/images/hive_tool@1x.png  400w,
+        /static/images/hive_tool@2x.png  800w,
+        /static/images/hive_tool@3x.png 1200w
+      "
+      sizes="
+        (max-width: 500px) 100vw,
+        (max-width: 700px) 50vw,
+        33vw
+      "
+    />
+  </picture>
+</div>
+
+<div class="container d-flex justify-content-center">
   <div class="form-group mt-4 text-center">
     <form action="/signup" method="post">
       <input
         type="email"
         id="signup-email"
         name="email"
-        class="m-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3"
+        class="my-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3"
         placeholder="Email..."
       />
       <input
         type="password"
         id="signup-password"
         name="password"
-        class="m-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3"
+        class="my-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3"
         placeholder="Password..."
       />
       <input
         type="password"
         id="signup-confirm-password"
         name="confirmPassword"
-        class="m-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3"
+        class="my-2 form-control fw-bold text-center bg-inputgrey rounded-pill border-michgold border-3"
         placeholder="Confirm Password..."
       />
       <button
@@ -35,13 +64,6 @@
         SIGN UP
       </button>
     </form>
-    <div class="container d-flex justify-content-center m-0">
-      <img
-        src="/static/images/hive_tool_xl_2.png"
-        alt=""
-        style="width: 300px; height: 300px"
-      />
-    </div>
   </div>
 </div>
 

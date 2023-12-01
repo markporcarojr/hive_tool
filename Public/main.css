@@ -219,10 +219,22 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  background-image: url("/static/images/honeycomb.jpeg");
+  background-image: url("/static/images/honeycomb@3x.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+@media (min-resolution: 192dpi) {
+  body {
+    background-image: url("/static/images/honeycomb@2x.jpg");
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background-image: url("/static/images/honeycomb@1x.jpg");
+  }
 }
 
 hr {
@@ -8498,7 +8510,20 @@ fieldset:disabled .btn {
 
 .header-image {
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 40%;
+  background-image: url(/static/images/smoky_apiary@3x.jpg);
+}
+
+@media (min-resolution: 192dpi) {
+  .header-image {
+    background-image: url(/static/images/smoky_apiary@2x.jpg);
+  }
+}
+
+@media (max-width: 767px) {
+  .header-image {
+    background-image: url(/static/images/smoky_apiary@1x.jpg);
+  }
 }
 
 .h-25 {
