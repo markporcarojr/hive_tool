@@ -3,7 +3,6 @@
     <div class="container text-center text-michgold "> 
       <%- include("partials/title")%>
 
-        <button class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill mb-3" onclick="filterSwarmByNumber()">Filter by Swarm Number</button>
          <!-- Swarm Card -->
          
          <div class="row row-cols-1 row-cols-lg-3 g-2">
@@ -209,11 +208,11 @@
                       <form action="/swarm/delete/<%= swarm.id %>?_method=DELETE" method="post">
                         <input type="hidden" name="_method"
                         value="DELETE">
-                        <input type="submit" value="DELETE" name="" id="" class="btn rounded-5 btn-danger">
+                        <input type="submit" value="DELETE" name="" id="" class="btn rounded-5 btn-outline-danger">
                       </form>
                       <a
                         href="/swarm/edit/<%= swarm.id %>"
-                        class="btn btn-primary rounded-5 px-4"
+                        class="btn btn-outline-warning rounded-5 px-4"
                         style="max-width: 30vw"
                         >EDIT</a
                       >
@@ -234,8 +233,8 @@
         class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill "
         style="
         position: fixed;
-        left: 71%;
-        top: 80%;
+        left: 40%;
+        top: 78%;
       ">
         ADD
         </a>
@@ -243,35 +242,6 @@
     </div>
   
       <%- include("partials/footer")%>
-      <script>
-        function filterSwarmByNumber() {
-          // Prompt the user to enter a swarm number
-          var swarmNumber = prompt("Enter Swarm Number:");
       
-          // Check if the user entered a value
-          if (swarmNumber !== null) {
-            // Convert the input to a number
-            swarmNumber = parseInt(swarmNumber);
-      
-            // Get all swarm card elements
-            var swarmCards = document.querySelectorAll('.col');
-      
-            // Loop through each swarm card
-            swarmCards.forEach(function(swarmCard) {
-              // Get the swarm number from the data attribute
-              var cardSwarmNumber = parseInt(swarmCard.getAttribute('data-swarm-number'));
-      
-              // Check if the swarm number matches the entered value
-              if (cardSwarmNumber === swarmNumber) {
-                // Show the matching swarm card
-                swarmCard.style.display = 'block';
-              } else {
-                // Hide non-matching swarm cards
-                swarmCard.style.display = 'none';
-              }
-            });
-          }
-        }
-      </script>
     </body>
   </html>

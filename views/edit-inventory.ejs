@@ -1,6 +1,5 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
-
   <section>
     <div class="container" style="max-width: 500px">
       <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw">
@@ -10,8 +9,8 @@
 
         <form action="/inventory/update/<%= data.id %>?_method=PUT" method="post" id="edit-inventory-form">
           <input type="hidden" name="_method" value="PUT">
-          <div class=" text-center m-3 mt-0 fs-3 fw-semibold">
-            <label for="inventoryType" class="form-label text-center mb-3"><%= data.inventoryType %></label>
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+            <label for="inventoryType" class="form-label"><%= data.inventoryType %></label>
             <input
               type="text"
               class="form-control bg-inputgrey border-3 text-center border-michgold rounded-4 opacity-50 fw-bold"
@@ -20,7 +19,7 @@
               value="<%= data.inventoryType %>"
             />
           </div>
-          <div class="text-center m-3 fs-3 fw-semibold mb-5">
+          <div class="m-3 fs-3 mt-0 fw-semibold">
             <label for="inventoryAmount" class="form-label">Quantity</label>
             <input
               type="number"
@@ -30,15 +29,7 @@
               value="<%= data.inventoryAmount %>"
             />
           </div>
-          <label for="inventoryDate" class="form-label fs-3 fw-semibold my-3">Date</label>
-              <input
-                type="date"
-                class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-                id="inventoryDate"
-                name="inventoryDate"
-                value="<%= data.inventoryDate %>"
-                
-              />
+          
           
         </form>
         <!-- Form end -->
@@ -46,7 +37,7 @@
        
 
       <div
-        class="d-flex justify-content-around  mt-5"
+        class="d-flex justify-content-around  mb-3"
       >
        
         <button

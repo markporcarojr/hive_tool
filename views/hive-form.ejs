@@ -15,8 +15,8 @@
         <!-- Forms -->
 
         <form action="/new-hive" method="post" id="hive-form">
-          <div class="text-center m-3">
-            <label for="hiveNumber" class="form-label mb-3 fs-3 fw-semibold"
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+            <label for="hiveNumber" class="form-label"
               >Hive Number</label
             >
             <input
@@ -27,8 +27,8 @@
               aria-describedby="hiveNumber"
             />
           </div>
-          <div class="text-center m-3">
-              <label for="breed" class="form-label mb-3 fs-3 fw-semibold">Breed</label>
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+              <label for="breed" class="form-label mb-3">Breed</label>
               <select name="breed" id="breed" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
                 <option   selected disabled>Breed</option>
                   <option value="Unknown">Unknown</option>
@@ -52,10 +52,10 @@
           <!-- Hive Range -->
           <label
             for="hiveStrength"
-            class="form-label mb-3 fs-3 fw-semibold text-start"
+            class="form-label my-1 fs-3 fw-semibold"
             >Hive Strength</label
           >
-          <div class="d-flex justify-content-evenly">
+          <div class="d-flex justify-content-evenly mb-3">
             <p class="mt-3">0</p>
             <input
               type="range"
@@ -66,24 +66,35 @@
               name="hiveStrength"
               style="min-width: 17rem"
             />
-            <p class="mt-3">100%</p>
+            <p class="mt-3" id="sliderValue">50</p><span class="mt-3">%</span>
           </div>
         </form>
-      </div>
-
-      <div class="d-flex justify-content-around mt-3">
-        
-        <button
-          type="submit"
-          form="hive-form"
-          class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
-        >
-          ADD
-        </button>
+        <div class="d-flex justify-content-around mb-3">
+          <button
+            type="submit"
+            form="hive-form"
+            class="btn px-5 btn-michgold btn-gold fw-bold rounded-pill"
+          >
+            ADD
+          </button>
+        </div>
       </div>
     </div>
   </section>
   <%- include("partials/footer")%>
+
+  <script>
+
+          // Slider function
+          const slider = document.getElementById('hiveStrength');
+          const sliderValue = document.getElementById('sliderValue');
+          slider.addEventListener('input', updateSlider);
+
+          function updateSlider() {
+              const value = slider.value;
+              sliderValue.textContent = value;
+           }
+  </script>
 </body>
 
 

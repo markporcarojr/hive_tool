@@ -2,6 +2,11 @@ document.getElementById('allInspections').addEventListener('click', showAllHives
 
 
 // Universal Functions
+
+
+
+//weather functions
+
 function getLocation() {
     if ("geolocation" in navigator) {
         // Prompt the user for location access

@@ -9,23 +9,25 @@
         <!-- Forms -->
 
           <form action="/new-feed" method="post" id="feed-form">
-            <label for="feeding" class="form-label fs-3 fw-semibold mt-0 m-3">Feeding</label>
-              <select name="feeding" id="feeding" class="form-select text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
-                <option   selected disabled>Select Feeding Type</option>
-                  <option value="fondant">Fondant</option>
-                  <option value="sugar">Sugar</option>
-                  <option value="pollen patty">Pollen Patty</option>
-                  <option value="syrup">Syrup</option>
-                </select>
-
-              <label for="feedDate" class="form-label fs-3 fw-semibold my-3">Date</label>
-              <input
-                type="date"
-                class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-                id="feedDate"
-                name="feedDate"
-                
-              />
+            <div class="m-3 fs-3 mt-0 fw-semibold">
+              <label for="feeding" class="form-label">Feeding</label>
+                <select name="feeding" id="feeding" class="form-select text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
+                  <option   selected disabled>Select Feeding Type</option>
+                    <option value="fondant">Fondant</option>
+                    <option value="sugar">Sugar</option>
+                    <option value="pollen patty">Pollen Patty</option>
+                    <option value="syrup">Syrup</option>
+                  </select>
+            </div>
+            <div class="m-3 fs-3 mt-0 fw-semibold">
+                <label for="feedDate" class="form-label">Date</label>
+                <input
+                  type="date"
+                  class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+                  id="feedDate"
+                  name="feedDate"
+                />
+            </div>
           </form> 
          
           
@@ -35,7 +37,7 @@
        
 
       <div
-        class="d-flex justify-content-around  mt-5"
+        class="d-flex justify-content-around  mb-3"
       >
         
         <button

@@ -1,12 +1,12 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
 
-    <div class="container text-center text-michgold">
-      <div class="header-image text-white my-3 border rounded-2"  )">
-  
-        <%- include("partials/title")%>
+  <div class="header-image text-center text-michgold border rounded-2 mb-2">
 
-    </div>
+    <%- include("partials/title")%>
+
+  </div>
+    <div class="container text-center text-michgold">
       <div class="row row-cols-1 row-cols-lg-3 g-2">
         <!-- insert cards here -->
         <% data.forEach((hive) => {%>
@@ -29,11 +29,11 @@
                 <form action="/hive/delete/<%= hive.id %>?_method=DELETE" method="post">
                   <input type="hidden" name="_method"
                   value="DELETE">
-                  <input type="submit" value="DELETE" name="" id="" class="btn rounded-5 btn-danger">
+                  <input type="submit" value="DELETE" name="" id="" class="btn rounded-5 btn-outline-danger">
                 </form>
                 <a
                   href="/hive/edit/<%= hive.id %>"
-                  class="btn btn-primary rounded-5 px-4"
+                  class="btn btn-outline-warning rounded-5 px-4"
                   style="max-width: 30vw"
                   >EDIT</a
                 >
@@ -56,14 +56,13 @@
         style="
         position: fixed;
         left: 40%;
-        top: 80%;
+        top: 78%;
       ">
         ADD
         </a>
        
       </div>
     </div>
-  
       <%- include("partials/footer")%>
       
     </body>

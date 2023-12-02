@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 // Schema
 const treatmentSchema = new Schema({
+    hiveNumber: {
+        type: Number,
+        required: true
+    },
+
     treatment: {
         type: String,
         required: true

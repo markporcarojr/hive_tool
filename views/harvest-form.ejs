@@ -9,39 +9,44 @@
         <!-- Forms -->
 
         <form action="/new-harvest" method="post" id="harvest-form">
-          <select name="harvestType" id="harvestType" class="form-select fs-5  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
-            <option   selected disabled>Select Harvest Type</option>
-              <option value="Honey">Honey</option>
-              <option class="" value="Wax">Wax</option>
-              
-            </select>
-            <label for="harvestAmount"
-             class="mt-3">Amount</label
-              >
-            <div class=" m-3 fs-3 fw-semibold mb-3 d-flex justify-content-between">
-            <input
-              type="number"
-              class="form-control fs-5 bg-inputgrey border-3 me-3 text-end border-michgold rounded-4 opacity-50 fw-bold"
-              id="harvestAmount"
-              name="harvestAmount"
-            />
-            
-            <h2 for="" class=" mt-2">Lbs</h2>
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+            <label for="harvestType" class="form-label">Harvest Type</label>
+            <select name="harvestType" id="harvestType" class="form-select text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" aria-label="select example">
+              <option   selected disabled>Select Harvest Type</option>
+                <option value="Honey">Honey</option>
+                <option class="" value="Wax">Wax</option>
+              </select>
           </div>
-          <label for="harvestDate" class="form-label fs-3 fw-semibold mb-3">Date</label>
+            <div class="m-3 fs-3 mt-0 fw-semibold">
+              <label for="harvestAmount"
+               class="form-label">Amount</label
+                >
+              <div class="fs-3 fw-semibold mb-3 d-flex justify-content-between">
               <input
-                type="date"
-                class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
-                id="harvestDate"
-                name="harvestDate"
+                type="number"
+                class="form-control fs-5 bg-inputgrey border-3 me-3 text-end border-michgold rounded-4 opacity-50 fw-bold"
+                id="harvestAmount"
+                name="harvestAmount"
               />
+              <h2 for="" class=" mt-2">Lbs</h2>
+              </div>
+            </div>
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+            <label for="harvestDate" class="form-label fs-3 fw-semibold mb-3">Date</label>
+                <input
+                  type="date"
+                  class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+                  id="harvestDate"
+                  name="harvestDate"
+                />
+          </div>
         </form>
         <!-- Form end -->
 
        
 
       <div
-        class="d-flex justify-content-around  mt-5"
+        class="d-flex justify-content-around  mb-3"
       >
        
         <button

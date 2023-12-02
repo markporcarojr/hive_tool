@@ -375,7 +375,7 @@ router.put('/swarm/update/:id', ensureAuthenticated, (req, res) => {
 
 // Edit Treatment
 router.put('/treatment/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['treatment'];
+    const fields = ['treatment', 'hiveNumber'];
     const dateFieldName = 'treatmentDate';
     universalController.editData(Treatment, req.params.id, req.body, res, '/treatment', fields, dateFieldName);
 });
