@@ -267,6 +267,14 @@ body {
   height: 100px;
 }
 
+.privacy {
+  background-color: rgba(0, 39, 76, 80%);
+  border: 3px solid #ffcb05;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
 #slider {
   width: 100%;
 }
@@ -13066,7 +13074,7 @@ fieldset:disabled .btn {
   }
 }
 :root {
-  --bs-body-bg: #00274c;
+  --bs-body-bg: rgba(0, 39, 76, 90%);
 }
 
 body {
