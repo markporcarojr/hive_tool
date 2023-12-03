@@ -129,16 +129,7 @@
    
     <%- include("partials/footer")%>
     <script>
-
-      // Slider function
-              const slider = document.getElementById('hiveStrength');
-              const sliderValue = document.getElementById('sliderValue');
-              slider.addEventListener('input', updateSlider);
-
-              function updateSlider() {
-                  const value = slider.value;
-                  sliderValue.textContent = value;
-             }
+    initSlider();
     </script>
 
     </body>

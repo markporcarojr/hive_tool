@@ -28,49 +28,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/static/functions.js"></script>
 <script>
-  const apiKey = "<%= process.env.WEATHER_KEY %>";
-  const apiUrl =
-    "https://api.openweathermap.org/data/2.5/weather?units=imperial";
-
-  async function getCurrentLocation() {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
-  }
-
-  async function checkWeather() {
-    try {
-      const position = await getCurrentLocation();
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-
-      const response = await fetch(
-        `${apiUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`
-      );
-      const data = await response.json();
-
-      console.log(data);
-      document.querySelector("#city").innerHTML = data.name;
-      document.querySelector("#temp").innerHTML =
-        Math.round(data.main.temp) + "℉";
-
-      // 🌥️ 🌤️ 🌤️
-      if (data.weather[0].main == "Clouds") {
-        document.querySelector("#clouds").innerHTML = "🌥️";
-      } else if (data.weather[0].main == "Clear") {
-        document.querySelector("#clouds").innerHTML = "🌞";
-      } else if (data.weather[0].main == "Rain") {
-        document.querySelector("#clouds").innerHTML = "🌧️";
-      } else if (data.weather[0].main == "Drizzle") {
-        document.querySelector("#clouds").innerHTML = "🌦️";
-      } else if (data.weather[0].main == "Mist") {
-        document.querySelector("#clouds").innerHTML = "🌫️";
-      } else if (data.weather[0].main == "Thunderstorm") {
-        document.querySelector("#clouds").innerHTML = "⛈️";
-      }
-    } catch (error) {
-      console.error("Error getting location or weather data:", error);
-    }
-  }
-  document.addEventListener("DOMContentLoaded", checkWeather);
+  document.addEventListener("DOMContentLoaded", function () {
+    const apiKey = "<%= process.env.WEATHER_KEY %>";
+    checkWeather(apiKey);
+  });
 </script>

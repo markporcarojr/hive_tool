@@ -1,38 +1,73 @@
 document.getElementById('allInspections').addEventListener('click', showAllHives);
+require('dotenv').config();
 
 
 // Universal Functions
 
+// Slider function
 
+function initSlider() {
+    const slider = document.getElementById('hiveStrength');
+    const sliderValue = document.getElementById('sliderValue');
+    slider.addEventListener('input', updateSlider);
 
-//weather functions
-
-function getLocation() {
-    if ("geolocation" in navigator) {
-        // Prompt the user for location access
-        navigator.geolocation.getCurrentPosition(
-            // Success callback
-            function (position) {
-                // Access the user's latitude and longitude from the position object
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
-                // Now you can use the latitude and longitude to fetch weather information
-                // You might want to make an API call to a weather service here
-
-                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-            },
-            // Error callback
-            function (error) {
-                // Handle errors (e.g., user denied access or there was an issue)
-                console.error("Error getting location:", error.message);
-            }
-        );
-    } else {
-        // Geolocation is not supported
-        console.error("Geolocation is not supported by your browser");
+    function updateSlider() {
+        const value = slider.value;
+        sliderValue.textContent = value;
     }
 }
+
+
+
+// Weather Functions
+
+async function getCurrentLocation() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+}
+
+async function checkWeather(apiKey) {
+    try {
+        const position = await getCurrentLocation();
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        const apiUrl =
+            "https://api.openweathermap.org/data/2.5/weather?units=imperial";
+
+        const response = await fetch(
+            `${apiUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`
+        );
+        const data = await response.json();
+
+        console.log(data);
+        document.querySelector("#city").innerHTML = data.name;
+        document.querySelector("#temp").innerHTML =
+            Math.round(data.main.temp) + "℉";
+
+        // 🌥️ 🌤️ 🌤️
+        const clouds = document.querySelector("#clouds");
+        if (data.weather[0].main == "Clouds") {
+            clouds.src = "https://openweathermap.org/img/wn/04d@2x.png";
+        } else if (data.weather[0].main == "Clear") {
+            clouds.src = "https://openweathermap.org/img/wn/01d@2x.png";
+        } else if (data.weather[0].main == "Rain") {
+            clouds.src = "https://openweathermap.org/img/wn/09d@2x.png";
+        } else if (data.weather[0].main == "Drizzle") {
+            clouds.src = "https://openweathermap.org/img/wn/10d@2x.png";
+        } else if (data.weather[0].main == "Mist") {
+            clouds.src = "https://openweathermap.org/img/wn/50d@2x.png";
+        } else if (data.weather[0].main == "Thunderstorm") {
+            clouds.src = "https://openweathermap.org/img/wn/11d@2x.png";
+        } else if (data.weather[0].main == "Snow") {
+            clouds.src = "https://openweathermap.org/img/wn/13d@2x.png";
+        }
+    } catch (error) {
+        console.error("Error getting location or weather data:", error);
+    }
+}
+
 
 function updateDateTime() {
     const now = new Date();
@@ -60,6 +95,7 @@ function updateDateTime() {
 
 
 // Inspection page 
+
 function filterByHiveNumber() {
     // Prompt the user to enter a hive number
     // var hiveNumber = prompt("Enter Hive Number:");

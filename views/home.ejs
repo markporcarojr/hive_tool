@@ -63,7 +63,14 @@
        
       </div>
     </div>
+
       <%- include("partials/footer")%>
-      
+      <script>
+          document.addEventListener("DOMContentLoaded", function () {
+           const title = document.getElementById('title');
+           title.classList.remove('title');
+            });
+      </script>
+
     </body>
   </html>
