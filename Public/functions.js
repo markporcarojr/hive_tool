@@ -90,7 +90,22 @@ function updateDateTime() {
 }
 
 // *************************** PAGE FUNCTIONS ********************************
+// HARVEST PAGE
 
+function updateIcons() {
+    const iconContainers = document.querySelectorAll(".icon");
+
+    iconContainers.forEach((iconContainer) => {
+        const harvestType = iconContainer.getAttribute("data-harvest-type");
+
+        // Add the appropriate class based on harvestType
+        if (harvestType === "Honey") {
+            iconContainer.classList.add("svg-honey");
+        } else {
+            iconContainer.classList.add("svg-wax");
+        }
+    });
+};
 // Home Page
 
 

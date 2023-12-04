@@ -1,7 +1,4 @@
-const moment = require('moment');
-
-
-/// SAVE
+// NEW DATA
 function saveNewData(req, res, Model, redirectUrl, dateFieldName, userId) {
     // Create a new instance of the model
     const data = new Model({
@@ -9,17 +6,9 @@ function saveNewData(req, res, Model, redirectUrl, dateFieldName, userId) {
         userId: userId,
     });
 
-    // Convert all string fields to uppercase
-    for (const key in data._doc) {
-        if (typeof data[key] === 'string') {
-            data[key] = data[key].toUpperCase();
-        }
-    }
-
     // Format the date field
-    const formattedDate = moment(req.body[dateFieldName]).format('L');
+    const formattedDate = formatDate(new Date());
     data[dateFieldName] = formattedDate;
-
 
     // Save data to the database
     data.save()
@@ -29,25 +18,24 @@ function saveNewData(req, res, Model, redirectUrl, dateFieldName, userId) {
         .catch(err => console.log(err));
 }
 
-// EDIT
-function editData(model, id, body, res, redirectPath, fields, dateFieldName) {
-    const formattedDate = moment(body[dateFieldName]).format('L');
+// EDIT DATA
+function editData(model, id, body, res, redirectPath, dateFieldName) {
     model.findOne({
         _id: id
     }).then(data => {
-        fields.forEach(field => {
-            if (body[field]) {
-                data[field] = body[field].toUpperCase();
-            }
-        });
-        data[dateFieldName] = formattedDate;
+        // Directly assign values from body to data
+        Object.assign(data, body);
+
+        // If the date is present in the request body, use it; otherwise, keep the existing date
+        if (body[dateFieldName]) {
+            data[dateFieldName] = formatDate(new Date(body[dateFieldName]));
+        }
 
         data.save().then(() => {
             res.redirect(redirectPath);
         }).catch(err => console.log(err));
     }).catch(err => console.log(err));
 }
-
 
 
 // DELETE
@@ -59,8 +47,13 @@ function deleteItem(req, res, Model, redirectUrl) {
     }).catch(err => console.log(err));
 }
 
+///   Date Format
+function formatDate(date) {
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth() + 1; // Months are zero-based
+    const year = date.getUTCFullYear();
 
+    return `${month}/${day}/${year}`;
+}
 
-
-
-module.exports = { saveNewData, editData, deleteItem };
+module.exports = { saveNewData, editData, deleteItem, formatDate };

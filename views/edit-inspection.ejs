@@ -84,7 +84,8 @@
                   
                       <div class="m-3">
                         <select name="disease" id="disease" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                          <option   selected disabled><%= data.disease %></option>
+                            <option   selected disabled><%= data.disease %></option>
+                            <option value="No Diseases">No Diseases</option>
                             <option value="⚠️ Varroa Mites">Varroa Mites</option>
                             <option value="⚠️ Chalkbrood">Chalkbrood</option>
                             <option value="⚠️ Stonebrood">Stonebrood</option>
@@ -95,7 +96,8 @@
                   
                       <div class="m-3">
                         <select name="pests" id="pests" class="form-select mb-2  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                          <option   selected disabled><%= data.pests %></option>
+                            <option   selected disabled><%= data.pests %></option>
+                            <option value="No Pests">No Pests</option>
                             <option value="⚠️ Wax moths">Wax Moths</option>
                             <option value="⚠️ Mice">Mice</option>
                             <option value="⚠️ Hive Beetle">Hive Beetle</option>
@@ -128,6 +130,7 @@
     </section>
    
     <%- include("partials/footer")%>
+    
     <script>
     initSlider();
     </script>

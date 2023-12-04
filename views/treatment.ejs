@@ -92,9 +92,7 @@
           </div>
         </div>
       </div>
-      <% }) %>
-      
-    
+      <% }) %>    
       </div> 
       
       <!-- Treatment Card End-->
@@ -115,14 +113,6 @@
     </div>
   
       <%- include("partials/footer")%>
-      <script>
-
-        if (data.weather[0].main == "Clouds") {
-                document.querySelector("#clouds").innerHTML = "🌥️";
-              } else if (data.weather[0].main == "Clear") {
-                document.querySelector("#clouds").innerHTML = "🌞";
-  
-    </script>
   
     </body>
   </html>

@@ -193,6 +193,7 @@
                             <p class="card-text m-0"><%= inspection.pests %></p>
                             <p class="card-text m-0"> <%= inspection.queenCell %> </p>
                           </div>
+
                           <div class="d-flex justify-content-between mx-3 mb-2">
                             <form action="/inspection/delete/<%= inspection.id %>?_method=DELETE" method="post">
                               <input type="hidden" name="_method"
@@ -204,33 +205,31 @@
                               class="btn btn-outline-warning rounded-5 px-4"
                               style="max-width: 30vw"
                               >EDIT</a
-                            >
-            
+                            >            
                           </div>
+                          
                         </div>
                       </div>
                     </div>
                   <% }) %>
-                    
-                
             </div>
             <div class="fixedBtn" >
-              <a
-              href="inspection-form"
-              type="button"
-              class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill "
-              style="
-              position: fixed;
-              left: 40%;
-              top: 78%;
-            ">
-              ADD
-              </a>
+                <a
+                href="inspection-form"
+                type="button"
+                class="btn btn-lg px-4  btn-michgold btn-gold rounded-pill "
+                style="
+                position: fixed;
+                left: 40%;
+                top: 78%;
+              ">
+                ADD
+                </a>
              
-            </div>
-        
-        
-</div>
+            </div>        
+    </div>
+
     <%- include("partials/footer")%>
+
     </body>
   </html>

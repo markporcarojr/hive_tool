@@ -280,8 +280,7 @@ router.get('/treatment/edit/:id', ensureAuthenticated, (req, res) => {
 // Route for Saving New Feed
 router.post('/new-feed', ensureAuthenticated, (req, res) => {
     const dateFieldName = 'feedDate';
-    const userId = req.user._id; // Assuming you store the user ID in the req.user object
-
+    const userId = req.user._id;
     universalController.saveNewData(req, res, Feed, '/feeding', dateFieldName, userId);
 });
 
@@ -333,51 +332,44 @@ router.post('/new-treatment', ensureAuthenticated, (req, res) => {
 
 // Edit Feed
 router.put('/feed/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['feeding'];
     const dateFieldName = 'feedDate';
-    universalController.editData(Feed, req.params.id, req.body, res, '/feeding', fields, dateFieldName);
+    universalController.editData(Feed, req.params.id, req.body, res, '/feeding', dateFieldName);
 });
 
 // Edit Hive
 router.put('/hive/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['hiveNumber', 'breed', 'hiveStrength'];
     const dateFieldName = 'hiveDate';
-    universalController.editData(Hive, req.params.id, req.body, res, '/', fields, dateFieldName);
+    universalController.editData(Hive, req.params.id, req.body, res, '/', dateFieldName);
 });
 
 // Edit Harvest
 router.put('/harvest/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['harvestType', 'harvestAmount'];
     const dateFieldName = 'harvestDate';
-    universalController.editData(Harvest, req.params.id, req.body, res, '/harvest', fields, dateFieldName);
+    universalController.editData(Harvest, req.params.id, req.body, res, '/harvest', dateFieldName);
 });
 
 // Edit Inventory
 router.put('/inventory/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['inventoryType', 'inventoryAmount'];
     const dateFieldName = 'inventoryDate';
-    universalController.editData(Inventory, req.params.id, req.body, res, '/inventory', fields, dateFieldName);
+    universalController.editData(Inventory, req.params.id, req.body, res, '/inventory', dateFieldName);
 });
 
 // Edit Inspection
 router.put('/inspection/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['hiveNumber', 'temperament', 'strength', 'queen', 'queenCell', 'brood', 'disease', 'pests', 'eggs'];
     const dateFieldName = 'inspectionDate';
-    universalController.editData(Inspection, req.params.id, req.body, res, '/inspections', fields, dateFieldName);
+    universalController.editData(Inspection, req.params.id, req.body, res, '/inspections', dateFieldName);
 });
 
 // Edit Swarm
 router.put('/swarm/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['swarmNumber', 'location'];
     const dateFieldName = 'swarmDate';
-    universalController.editData(Swarm, req.params.id, req.body, res, '/swarmtrap', fields, dateFieldName);
+    universalController.editData(Swarm, req.params.id, req.body, res, '/swarmtrap', dateFieldName);
 });
 
 // Edit Treatment
 router.put('/treatment/update/:id', ensureAuthenticated, (req, res) => {
-    const fields = ['treatment', 'hiveNumber'];
     const dateFieldName = 'treatmentDate';
-    universalController.editData(Treatment, req.params.id, req.body, res, '/treatment', fields, dateFieldName);
+    universalController.editData(Treatment, req.params.id, req.body, res, '/treatment', dateFieldName);
 });
 
 // ===============================  EDIT DATA END   ========================================

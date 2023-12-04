@@ -58,28 +58,8 @@
   
       <%- include("partials/footer")%>
       <script>
-            document.addEventListener('DOMContentLoaded', function () {
-            var iconContainers = document.querySelectorAll(".icon");
-
-            iconContainers.forEach(function (iconContainer) {
-                var harvestType = iconContainer.getAttribute("data-harvest-type");
-
-                // Remove existing classes
-                iconContainer.classList.remove("svg-honey", "svg-wax");
-
-                // Add the appropriate class based on harvestType
-                if (harvestType === "HONEY") {
-                    iconContainer.classList.add("svg-honey");
-                } else {
-                    iconContainer.classList.add("svg-wax");
-                }
-            });
-        });
-
+            document.addEventListener('DOMContentLoaded', updateIcons())
       </script>
-      
-      
-  
-     
+         
     </body>
   </html>
