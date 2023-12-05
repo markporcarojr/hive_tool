@@ -4,3 +4,4 @@ dist/
 .env
 .node-version
 netlify.toml
+vercel.json
