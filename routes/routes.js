@@ -9,6 +9,7 @@ const Harvest = require('../models/harvest');
 const Hive = require('../models/hive');
 const Inspection = require('../models/inspections');
 const Inventory = require('../models/inventory');
+const Settings = require('../models/settings');
 const Swarm = require('../models/swarm');
 const Treatment = require('../models/treatment');
 const User = require('../models/user');
@@ -164,6 +165,11 @@ router.get('/login', (req, res) => {
     res.render('login', { title: 'Login' });
 });
 
+// Route to Settings Form
+router.get('/settings-form', ensureAuthenticated, (req, res) => {
+    res.render('settings-form', { title: 'Edit Settings', });
+});
+
 // Route to Swarm Trap Form
 router.get('/swarmtrap-form', ensureAuthenticated, (req, res) => {
     res.render('swarmtrap-form', { title: 'New Swarm Trap' });
@@ -273,6 +279,17 @@ router.get('/treatment/edit/:id', ensureAuthenticated, (req, res) => {
         .catch(err => console.log(err));
 });
 
+// Route for Edit Settings Page
+router.get('/settings/edit/:id', ensureAuthenticated, (req, res) => {
+    Settings.findOne({
+        _id: req.params.id
+    })
+        .then(data => {
+            res.render('edit-settings', { data: data, title: 'Edit Settings' });
+        })
+        .catch(err => console.log(err));
+});
+
 // ===============================   EDIT ROUTING END    ===================================
 
 // ************************************ ADDING NEW DATA (post)  ************************************
@@ -326,6 +343,13 @@ router.post('/new-treatment', ensureAuthenticated, (req, res) => {
     universalController.saveNewData(req, res, Treatment, '/treatment', dateFieldName, userId);
 });
 
+// Route for Saving Settings
+router.post('/new-settings', ensureAuthenticated, (req, res) => {
+    const dateFieldName = 'settingsDate';
+    const userId = req.user._id;
+    universalController.saveNewData(req, res, Settings, '/', dateFieldName, userId);
+});
+
 // ************************************  END ADDING NEW DATA *******************************
 
 // ===============================  EDIT DATA  (put)   ==========================================
@@ -358,6 +382,12 @@ router.put('/inventory/update/:id', ensureAuthenticated, (req, res) => {
 router.put('/inspection/update/:id', ensureAuthenticated, (req, res) => {
     const dateFieldName = 'inspectionDate';
     universalController.editData(Inspection, req.params.id, req.body, res, '/inspections', dateFieldName);
+});
+
+// Edit Settings
+router.put('/settings/update/:id', ensureAuthenticated, (req, res) => {
+    const dateFieldName = 'settingsDate';
+    universalController.editData(Settings, req.params.id, req.body, res, '/', dateFieldName);
 });
 
 // Edit Swarm

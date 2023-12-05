@@ -6,9 +6,10 @@ function saveNewData(req, res, Model, redirectUrl, dateFieldName, userId) {
         userId: userId,
     });
 
-    // Format the date field
-    const formattedDate = formatDate(new Date());
-    data[dateFieldName] = formattedDate;
+    // If the date is present in the request body, format it using formatDate; otherwise, keep the existing date
+    if (req.body[dateFieldName]) {
+        data[dateFieldName] = formatDate(req.body[dateFieldName]);
+    }
 
     // Save data to the database
     data.save()
@@ -26,9 +27,9 @@ function editData(model, id, body, res, redirectPath, dateFieldName) {
         // Directly assign values from body to data
         Object.assign(data, body);
 
-        // If the date is present in the request body, use it; otherwise, keep the existing date
+        // If the date is present in the request body, format it using formatDate; otherwise, keep the existing date
         if (body[dateFieldName]) {
-            data[dateFieldName] = formatDate(new Date(body[dateFieldName]));
+            data[dateFieldName] = formatDate(body[dateFieldName]);
         }
 
         data.save().then(() => {
@@ -36,7 +37,6 @@ function editData(model, id, body, res, redirectPath, dateFieldName) {
         }).catch(err => console.log(err));
     }).catch(err => console.log(err));
 }
-
 
 // DELETE
 function deleteItem(req, res, Model, redirectUrl) {
@@ -48,7 +48,11 @@ function deleteItem(req, res, Model, redirectUrl) {
 }
 
 ///   Date Format
-function formatDate(date) {
+function formatDate(dateString) {
+    // Convert the string date to a Date object
+    const date = new Date(dateString);
+
+    // Format the date
     const day = date.getUTCDate();
     const month = date.getUTCMonth() + 1; // Months are zero-based
     const year = date.getUTCFullYear();

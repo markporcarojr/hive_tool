@@ -11,7 +11,7 @@ $custom-colors: (
   "inputgrey": rgba(217, 217, 217, 0.5),
   "delete-btn": #d11a2a,
 );
-
+$enable-shadows: true;
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "../node_modules/bootstrap/scss/bootstrap";

@@ -2,16 +2,34 @@
   <%- include("partials/navbar")%>
 
   <div class="header-image text-center text-michgold border rounded-2 mb-2">
-
-    <%- include("partials/title")%>
-
+    <div id="title" class="container">
+      <H1
+        class="text-center shadow text-white mt-2 outlined-text display-1 fw-bold apiary"
+        ><%= locals.settings.apiaryName %></H1
+      >
+      <h5 class="card-title mt-3 fs-2 outlined-text" id="datetime"></h5>
+      <div
+        class="d-flex justify-content-between text-white outlined-text fs-3 fw-bold my-1 me-2"
+      >
+        <div class="ms-4">
+          <img class="locationIcon" src="/static/images/location.png" alt="" />
+          <p class="card-text mb-0" id="city"></p>
+        </div>
+        <div>
+          <p class="card-text mb-0"><img id="clouds" src="" alt="" /></p>
+          <p class="card-text" id="temp"></p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  
     <div class="container text-center text-michgold">
       <div class="row row-cols-1 row-cols-lg-3 g-2">
         <!-- insert cards here -->
         <% data.forEach((hive) => {%>
         <div class="col">
-          <div class="container px-2" style="max-width: 500px">
+          <div class="container px-2 pop" style="max-width: 500px">
             <div class="card text-michgold border-michgold rounded-5 border-3">
               <div class="card-header fs-4 fw-bold text-center pb-0">Hive # <%= hive.hiveNumber %></div>
               <div class="card-header fs-6 fw-bold text-center pb-0"><%= hive.breed %></div>
@@ -65,12 +83,6 @@
     </div>
 
       <%- include("partials/footer")%>
-      <script>
-          document.addEventListener("DOMContentLoaded", function () {
-           const title = document.getElementById('title');
-           title.classList.remove('title');
-            });
-      </script>
-
+     
     </body>
   </html>

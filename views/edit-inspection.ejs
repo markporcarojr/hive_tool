@@ -2,7 +2,6 @@
   <%- include("partials/navbar")%>
   
 
-    <section>
         <div class="container" style="max-width: 500px;">
             <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw;">
               <%- include("partials/title")%>
@@ -104,7 +103,7 @@
                             <option value="⚠️ Ants">Ants</option>
                           </select>
                       </div>
-                  <label for="inspectionDate" class="form-label fs-3 fw-semibold mb-3">Date</label>
+                  <label for="inspectionDate" class="form-label fs-3 fw-semibold mb-3">Date (<%= data.inspectionDate %>)</label>
                   <div class="m-3 fs-3 mt-0 fw-semibold">
                     <input
                       type="date"
@@ -127,7 +126,6 @@
               </div> 
             </div>
         </div>
-    </section>
    
     <%- include("partials/footer")%>
     

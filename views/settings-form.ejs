@@ -1,0 +1,55 @@
+<%- include("partials/header")%>
+  <%- include("partials/navbar")%>
+
+  <section>
+    <div class="container" style="max-width: 500px">
+      <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw">
+        <%- include("partials/title")%>
+
+        <!-- Forms -->
+
+        <form action="/new-settings" method="post" id="settings-form">
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+            <label for="Apiary Name" class="form-label">Apiary Name</label>
+            <input
+              type="text"
+              class="form-control bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold text-center"
+              id="apiaryName"
+              name="apiaryName"
+            />
+          </div>
+          <div class="m-3 fs-3 mt-0 fw-semibold">
+            <label for="User Name" class="form-label">User Name</label>
+            <input
+              type="text"
+              class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
+              id="userName"
+              name="userName"
+            />
+          </div>          
+        </form>
+        <!-- Form end -->
+
+      <div
+        class="d-flex justify-content-around  mb-3"
+      >   
+        <a
+          href="/settings/edit/<%= locals.settings.id %>"
+          class="btn btn-outline-warning rounded-5 px-4"
+          style="max-width: 30vw"
+          >EDIT</a
+        >  
+        <button
+          type="submit"
+          form="settings-form"
+          class="btn px-4 btn-michgold btn-gold fw-bold rounded-pill"
+        >
+          ADD
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <%- include("partials/footer")%>
+
+</body>

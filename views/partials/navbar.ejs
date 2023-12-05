@@ -25,6 +25,9 @@
       </picture>
       <p class="mb-0 fw-bold">HIVE TOOL</p>
     </div>
+    <div>
+      <h1><%= settings.userName %></h1>
+    </div>
 
     <button
       class="navbar-toggler"
@@ -46,6 +49,7 @@
         <a class="nav-link" href="harvest">Harvest</a>
         <a class="nav-link" href="swarmtrap">Swarm Traps</a>
         <a class="nav-link" href="feeding">Feeding</a>
+        <a class="nav-link" href="settings-form">Settings</a>
         <% if (user) { %>
         <a class="nav-link" id="logoutButton" href="/logout">Logout</a>
         <% } else { %>
