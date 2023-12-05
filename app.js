@@ -36,7 +36,7 @@ const fetchSettings = (req, res, next) => {
 app.use(fetchSettings);
 
 // Serve static files
-app.use('/static', express.static(path.join(__dirname, 'Public')));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({ extended: false }))
