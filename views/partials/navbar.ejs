@@ -26,7 +26,7 @@
       <p class="mb-0 fw-bold">HIVE TOOL</p>
     </div>
     <div>
-      <h1><%= settings.userName %></h1>
+      <!-- insert name here -->
     </div>
 
     <button
@@ -43,13 +43,13 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="d-flex align-items-end navbar-nav ms-lg-auto ms-auto fw-bold">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="inspections">Inspections</a>
-        <a class="nav-link" href="inventory">Inventory</a>
-        <a class="nav-link" href="treatment">Treatment</a>
-        <a class="nav-link" href="harvest">Harvest</a>
-        <a class="nav-link" href="swarmtrap">Swarm Traps</a>
-        <a class="nav-link" href="feeding">Feeding</a>
-        <a class="nav-link" href="settings-form">Settings</a>
+        <a class="nav-link" href="/inspections">Inspections</a>
+        <a class="nav-link" href="/inventory">Inventory</a>
+        <a class="nav-link" href="/treatment">Treatment</a>
+        <a class="nav-link" href="/harvest">Harvest</a>
+        <a class="nav-link" href="/swarmtrap">Swarm Traps</a>
+        <a class="nav-link" href="/feeding">Feeding</a>
+        <a class="nav-link" href="/settings-form">Settings</a>
         <% if (user) { %>
         <a class="nav-link" id="logoutButton" href="/logout">Logout</a>
         <% } else { %>
