@@ -1,19 +1,19 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
-    <div class="container text-center text-michgold " >
+    <div class="container text-center text-michgold mt-2" >
       <%- include("partials/title")%>
 
-        <div>
-          <button id="allInspections" class="btn btn-sm mb-2 px-3 btn-michgold btn-gold rounded-pill">Show All Inspections</button>
-        </div>
-        <div class="d-flex justify-content-center mb-2">
-          <button id="filterInpection" class="btn btn-sm px-2 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
-          <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-75 fw-bold">
-        </div>
+          <div>
+            <button id="allInspections" class="btn btn-sm mb-2 px-3 btn-michgold btn-gold rounded-pill">Show All Inspections</button>
+          </div>
+          <div class="d-flex justify-content-center mb-2">
+            <button id="filterInpection" class="btn btn-sm px-2 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
+            <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-75 fw-bold">
+          </div>
         
-        <div class="row row-cols-1 row-cols-lg-3 g-2 " >
+            <div class="row row-cols-1 row-cols-lg-3 g-2 " >
               <% data.forEach((inspection) => {%>
-                    <div class="col" data-hive-number=" <%= inspection.hiveNumber %> ">
+                    <div class="col gy-4" data-hive-number=" <%= inspection.hiveNumber %> ">
                       <div class="container text-start px-2 pop" style="max-width: 500px">
                         <div class="card border-michgold border-3 rounded-5 m- mx-auto">
                           <div

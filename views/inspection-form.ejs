@@ -3,8 +3,8 @@
   
 
     <section>
-        <div class="container" style="max-width: 500px;">
-            <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw;">
+        <div class="container" style="max-width: 700px;">
+            <div class="card text-michgold text-center mt-2 mb-5">
               <%- include("partials/title")%>
               
                <!-- Forms -->
@@ -33,24 +33,28 @@
                         <label class="btn temperBtn" for="active">Active</label>
                       </div>
                   </div>
+
                   <label
-                    for="strength"
-                    class="form-label my-1 fs-3 fw-semibold text-start"
-                    >Hive Strength</label
-                  >
-                  <div class="d-flex justify-content-evenly mb-3 mx-3">
-                    <p class="mt-3">0</p>
+                    for="hiveStrength"
+                    class="form-label my-1 fs-3 fw-semibold" >                
+                    Hive Strength
+                  </label>                  
+                  <div class="d-flex justify-content-evenly mb-3">
+                    <p class="mt-3" style="flex: 1;">0</p>
                     <input
                       type="range"
                       class="m-3 custom-range bg-michgold"
                       min="0"
                       max="100"
                       id="hiveStrength"
-                      name="strength"
-                      style="min-width: 17rem"
+                      name="hiveStrength"
+                      style="min-width: 60%; flex: 3;"
                     />
-                    <p class="mt-3" id="sliderValue">50</p><span class="mt-3">%</span>
+                    <div style="flex: 1;">
+                      <span id="sliderValue" class="mt-3">50</span>
+                    </div>
                   </div>
+
                     <div class="m-3 ">
                       <div class=" ps-0 form-check d-flex justify-content-between  ">
                         <label class="fs-2 mb-0" for="queen">
@@ -102,6 +106,7 @@
                             <option value="⚠️ Ants">Ants</option>
                           </select>
                       </div>
+
                   <label for="inspectionDate" class="form-label fs-3 fw-semibold mb-3">Date</label>
                   <div class="m-3 fs-3 mt-0 fw-semibold">
                     <input
@@ -111,6 +116,7 @@
                       name="inspectionDate"
                     />
                   </div>
+                  
                 </form>
 
               <div class="d-flex justify-content-around mb-3">

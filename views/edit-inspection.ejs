@@ -2,8 +2,8 @@
   <%- include("partials/navbar")%>
   
 
-        <div class="container" style="max-width: 500px;">
-            <div class="card text-michgold text-center mt-2 mb-5" style="max-width: 90vw;">
+        <div class="container" style="max-width: 700px;">
+            <div class="card text-michgold text-center mt-2 mb-5">
               <%- include("partials/title")%>
 
                 
@@ -33,76 +33,83 @@
                         <label class="btn temperBtn" for="active">Active</label>
                       </div>
                   </div>
+
                   <label
                     for="hiveStrength"
-                    class="form-label my-1 fs-3 fw-semibold text-start"
-                    >Hive Strength</label
-                  >
-                  <div class="d-flex justify-content-evenly mb-3 mx-3">
-                    <p class="mt-3">0</p>
+                    class="form-label my-1 fs-3 fw-semibold">
+                    Hive Strength
+                  </label>
+                    
+                  <div class="d-flex justify-content-evenly mb-3">
+                    <p class="mt-3" style="flex: 1;">0</p>
+                    
                     <input
                       type="range"
                       class="m-3 custom-range bg-michgold"
                       min="0"
                       max="100"
                       id="hiveStrength"
-                      name="strength"
-                      style="min-width: 17rem"
-                     
+                      name="hiveStrength"
+                      style="min-width: 60%; flex: 3;"
                     />
-                    <p class="mt-3" id="sliderValue">50</p><span class="mt-3">%</span>
-                  </div>
-                    <div class="m-3">
-                      <div class=" ps-0 form-check d-flex justify-content-between">
-                        <label class=" fs-2 mb-0" for="queen">
-                          Queen
-                        </label>
-                        <input class="form-check-input btn-lg" type="checkbox" value="✓ Queen Spotted" id="queen" name="queen"  <%= data.queen ? 'checked' : '' %>>
-                      </div>
-                      <div class="ps-0 form-check d-flex justify-content-between mb-2 ">
-                        <label class=" fs-2 mb-0" for="queenCell">
-                          Queen Cells
-                        </label>
-                        <input class="form-check-input btn-lg" type="checkbox" value="⚠️ Queen Cells" id="queenCell" name="queenCell"  <%= data.queenCell ? 'checked' : '' %>>
-                      </div>
-                      <div class="ps-0 form-check d-flex justify-content-between mb-2 ">
-                        <label class=" fs-2 mb-0" for="eggs">
-                          Eggs
-                        </label>
-                        <input class="form-check-input btn-lg" type="checkbox" value="✓ Eggs" id="eggs" name="eggs"  <%= data.eggs ? 'checked' : '' %>>
-                      </div>
+                  
+                    <div style="flex: 1;">
+                      <span id="sliderValue" class="mt-3">50</span>
                     </div>
-                      <div class="m-3">
-                        <select name="brood" id="brood" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                          <option   selected disabled><%= data.brood %></option>
-                            <option value="✓ Normal Brood">Normal</option>
-                            <option value="✓ Spotty Brood">Spotty</option>
-                            <option value="✓ Compact Brood">Compact</option>
-                          </select>
-                      </div>
+                  </div>
+
+                  <div class="m-3">
+                    <div class=" ps-0 form-check d-flex justify-content-between">
+                      <label class=" fs-2 mb-0" for="queen">
+                        Queen
+                      </label>
+                      <input class="form-check-input btn-lg" type="checkbox" value="✓ Queen Spotted" id="queen" name="queen"  <%= data.queen ? 'checked' : '' %>>
+                    </div>
+                    <div class="ps-0 form-check d-flex justify-content-between mb-2 ">
+                      <label class=" fs-2 mb-0" for="queenCell">
+                        Queen Cells
+                      </label>
+                      <input class="form-check-input btn-lg" type="checkbox" value="⚠️ Queen Cells" id="queenCell" name="queenCell"  <%= data.queenCell ? 'checked' : '' %>>
+                    </div>
+                    <div class="ps-0 form-check d-flex justify-content-between mb-2 ">
+                      <label class=" fs-2 mb-0" for="eggs">
+                        Eggs
+                      </label>
+                      <input class="form-check-input btn-lg" type="checkbox" value="✓ Eggs" id="eggs" name="eggs"  <%= data.eggs ? 'checked' : '' %>>
+                    </div>
+                  </div>
+
+                  <div class="m-3">
+                    <select name="brood" id="brood" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
+                      <option   selected disabled><%= data.brood %></option>
+                        <option value="✓ Normal Brood">Normal</option>
+                        <option value="✓ Spotty Brood">Spotty</option>
+                        <option value="✓ Compact Brood">Compact</option>
+                      </select>
+                  </div>
                   
-                      <div class="m-3">
-                        <select name="disease" id="disease" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                            <option   selected disabled><%= data.disease %></option>
-                            <option value="No Diseases">No Diseases</option>
-                            <option value="⚠️ Varroa Mites">Varroa Mites</option>
-                            <option value="⚠️ Chalkbrood">Chalkbrood</option>
-                            <option value="⚠️ Stonebrood">Stonebrood</option>
-                            <option value="⚠️ American Foulbrood">American Foulbrood</option>
-                            <option value="⚠️ European Foulbrood">European Foulbrood</option>
-                          </select>
-                      </div>
+                  <div class="m-3">
+                    <select name="disease" id="disease" class="form-select mb-2 text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
+                        <option   selected disabled><%= data.disease %></option>
+                        <option value="No Diseases">No Diseases</option>
+                        <option value="⚠️ Varroa Mites">Varroa Mites</option>
+                        <option value="⚠️ Chalkbrood">Chalkbrood</option>
+                        <option value="⚠️ Stonebrood">Stonebrood</option>
+                        <option value="⚠️ American Foulbrood">American Foulbrood</option>
+                        <option value="⚠️ European Foulbrood">European Foulbrood</option>
+                      </select>
+                  </div>
                   
-                      <div class="m-3">
-                        <select name="pests" id="pests" class="form-select mb-2  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
-                            <option   selected disabled><%= data.pests %></option>
-                            <option value="No Pests">No Pests</option>
-                            <option value="⚠️ Wax moths">Wax Moths</option>
-                            <option value="⚠️ Mice">Mice</option>
-                            <option value="⚠️ Hive Beetle">Hive Beetle</option>
-                            <option value="⚠️ Ants">Ants</option>
-                          </select>
-                      </div>
+                  <div class="m-3">
+                    <select name="pests" id="pests" class="form-select mb-2  text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold" >
+                        <option   selected disabled><%= data.pests %></option>
+                        <option value="No Pests">No Pests</option>
+                        <option value="⚠️ Wax moths">Wax Moths</option>
+                        <option value="⚠️ Mice">Mice</option>
+                        <option value="⚠️ Hive Beetle">Hive Beetle</option>
+                        <option value="⚠️ Ants">Ants</option>
+                      </select>
+                  </div>
                   <label for="inspectionDate" class="form-label fs-3 fw-semibold mb-3">Date (<%= data.inspectionDate %>)</label>
                   <div class="m-3 fs-3 mt-0 fw-semibold">
                     <input

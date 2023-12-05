@@ -1,12 +1,12 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
-    <div class="container text-center text-michgold ">
+    <div class="container text-center text-michgold mt-2">
       <%- include("partials/title")%>
 
         <div class="row row-cols-1 row-cols-lg-3 g-2">
           <!-- Harvest Card -->
           <% data.forEach((harvest) => {%>
-          <div class="col">
+          <div class="col gy-4">
             <div class="container px-2 pop" style="max-width: 500px">
               <div class="card text-michgold border-michgold rounded-5 border-3">
                 <div class="fw-bold text-center fs-5 p-2"><%= harvest.harvestDate %></div>
