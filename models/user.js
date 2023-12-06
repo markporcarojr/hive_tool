@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
         unique: true,
         sparse: true, // Allows null values and enforces unique constraint
     },
+    apiaryName: {
+        type: String,
+    },
+    userName: {
+        type: String,
+    }
 
 
 });

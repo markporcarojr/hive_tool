@@ -9,7 +9,6 @@ const Harvest = require('../models/harvest');
 const Hive = require('../models/hive');
 const Inspection = require('../models/inspections');
 const Inventory = require('../models/inventory');
-const Settings = require('../models/settings');
 const Swarm = require('../models/swarm');
 const Treatment = require('../models/treatment');
 const User = require('../models/user');
@@ -279,9 +278,9 @@ router.get('/treatment/edit/:id', ensureAuthenticated, (req, res) => {
         .catch(err => console.log(err));
 });
 
-// Route for Edit Settings Page
-router.get('/settings/edit/:id', ensureAuthenticated, (req, res) => {
-    Settings.findOne({
+// Route for Edit User settings Page
+router.get('/user/edit/:id', ensureAuthenticated, (req, res) => {
+    User.findOne({
         _id: req.params.id
     })
         .then(data => {
@@ -343,12 +342,12 @@ router.post('/new-treatment', ensureAuthenticated, (req, res) => {
     universalController.saveNewData(req, res, Treatment, '/treatment', dateFieldName, userId);
 });
 
-// Route for Saving Settings
-router.post('/new-settings', ensureAuthenticated, (req, res) => {
-    const dateFieldName = 'settingsDate';
-    const userId = req.user._id;
-    universalController.saveNewData(req, res, Settings, '/', dateFieldName, userId);
-});
+// // Route for Saving Settings
+// router.post('/new-settings', ensureAuthenticated, (req, res) => {
+//     const dateFieldName = 'settingsDate';
+//     const userId = req.user._id;
+//     universalController.saveNewData(req, res, Settings, '/', dateFieldName, userId);
+// });
 
 // ************************************  END ADDING NEW DATA *******************************
 
@@ -384,16 +383,22 @@ router.put('/inspection/update/:id', ensureAuthenticated, (req, res) => {
     universalController.editData(Inspection, req.params.id, req.body, res, '/inspections', dateFieldName);
 });
 
-// Edit Settings
-router.put('/settings/update/:id', ensureAuthenticated, (req, res) => {
+// Edit User
+router.put('/user/update/:id', ensureAuthenticated, (req, res) => {
     const dateFieldName = 'settingsDate';
-    universalController.editData(Settings, req.params.id, req.body, res, '/', dateFieldName);
+    universalController.editData(User, req.params.id, req.body, res, '/', dateFieldName);
 });
 
 // Edit Swarm
 router.put('/swarm/update/:id', ensureAuthenticated, (req, res) => {
     const dateFieldName = 'swarmDate';
     universalController.editData(Swarm, req.params.id, req.body, res, '/swarmtrap', dateFieldName);
+});
+
+// Edit Treatment
+router.put('/treatment/update/:id', ensureAuthenticated, (req, res) => {
+    const dateFieldName = 'treatmentDate';
+    universalController.editData(Treatment, req.params.id, req.body, res, '/treatment', dateFieldName);
 });
 
 // Edit Treatment

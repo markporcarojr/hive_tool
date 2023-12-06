@@ -1,7 +1,20 @@
 <%- include("partials/header")%>
   <%- include("partials/navbar")%>
       <div class="header-image text-center text-michgold border-bottom border-3 border-michgold mb-2">
-        <%- include("partials/title")%>
+        <div id="title" class="container title">
+          <H1 class="text-center text-white mt-2 outlined-text display-1 fw-bold apiary" id="apiaryName"
+            ><%= locals.user.apiaryName%> Apiary</H1
+          >
+          <h5 class="card-title mt-3 fs-2 outlined-text" id="datetime"></h5>
+          <div
+            class="d-flex justify-content-between text-white align-items-center outlined-text fs-3 fw-bold my-1 me-2"
+          >
+            <span class="card-text mb-0 ms-2 mt-" id="city"></span>
+            <span class="card-text mb-0"><img id="clouds" src="" alt="" /></span>
+            <span class="card-text mb-0" id="temp"></span>
+          </div>
+        </div>
+        
       </div>
           <div class="container text-center text-michgold">
             <div class="row row-cols-1 row-cols-lg-3 g-2">
@@ -62,5 +75,10 @@
             </div>
     
             <%- include("partials/footer")%>
+            <script>
+              document.addEventListener('DOMContentLoaded', ()=> {
+                document.querySelector('#title').classList.remove('title');
+              });
+            </script>
           </body>
         </html>

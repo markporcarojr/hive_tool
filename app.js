@@ -14,16 +14,16 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
-const Settings = require('./models/settings')
+// const Settings = require('./models/settings')
 require('dotenv').config();
 
 // ========================= Middleware =========================
 
 // Middleware to fetch and pass settings data to all routes
-const fetchSettings = (req, res, next) => {
-    Settings.findOne({})
-        .then(settings => {
-            app.locals.settings = settings; // Make it available to the entire app
+const fetchUser = (req, res, next) => {
+    User.findOne({})
+        .then(user => {
+            app.locals.user = user; // Make it available to the entire app
             next();
         })
         .catch(err => {
@@ -33,7 +33,7 @@ const fetchSettings = (req, res, next) => {
 };
 
 // Apply the middleware to all routes
-app.use(fetchSettings);
+app.use(fetchUser);
 
 // Serve static files
 app.use('/static', express.static(path.join(__dirname, 'Public')));

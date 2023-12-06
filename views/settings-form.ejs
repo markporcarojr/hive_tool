@@ -8,16 +8,24 @@
 
         <!-- Forms -->
 
-        <form action="/new-settings" method="post" id="settings-form">
-          <div class="m-3 fs-3 mt-0 fw-semibold">
-            <label for="Apiary Name" class="form-label">Apiary Name</label>
-            <input
-              type="text"
-              class="form-control bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold text-center"
-              id="apiaryName"
-              name="apiaryName"
-            />
-          </div>
+        <form action="/user/update/<%= locals.user.id %>?_method=PUT" method="post" id="settings-form">
+          <input type="hidden" name="_method" value="PUT">
+          
+            <div class="m-3 fs-3 mt-0 fw-semibold">
+              <label for="Apiary Name" 
+              class="form-label">Apiary Name</label>
+              <div class="fs-3 fw-semibold mb-3 d-flex justify-content-between">
+              <input
+                type="text"
+                class="form-control fs-5 bg-inputgrey border-3 me-3 text-end border-michgold rounded-4 opacity-50 fw-bold"
+                id="apiaryName"
+                name="apiaryName"
+                value="<%=locals.user.apiaryName%>"
+              />
+              <p class="mt-3">Apiary</p>
+            </div>
+            </div>
+          
           <div class="m-3 fs-3 mt-0 fw-semibold">
             <label for="User Name" class="form-label">User Name</label>
             <input
@@ -25,6 +33,7 @@
               class="form-control text-center bg-inputgrey border-3 border-michgold rounded-4 opacity-50 fw-bold"
               id="userName"
               name="userName"
+              value="<%=locals.user.userName%>"
             />
           </div>          
         </form>
@@ -34,7 +43,7 @@
         class="d-flex justify-content-around  mb-3"
       >   
         <a
-          href="/settings/edit/<%= locals.settings.id %>"
+          href="/user/edit/<%= locals.user.id %>"
           class="btn btn-outline-warning rounded-5 px-4"
           style="max-width: 30vw"
           >EDIT</a
