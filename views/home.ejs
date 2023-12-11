@@ -22,7 +22,7 @@
               <% data.forEach((hive) => {%>
               <div class="col gy-4">
                 <div class="container px-2 pop" style="max-width: 500px">
-                  <div class="card text-michgold border-michgold rounded-5 border-3">
+                  <div class="card text-michgold border-michgold rounded-5 border-3 <%= hive.hiveStrength === 0 ? 'bg-danger' : '' %>">
                     <div class="card-header fs-4 fw-bold text-center pb-0">Hive # <%= hive.hiveNumber %></div>
                     <div class="card-header fs-6 fw-bold text-center pb-0"><%= hive.breed %></div>
                     <div
@@ -39,7 +39,7 @@
                       <form action="/hive/delete/<%= hive.id %>?_method=DELETE" method="post">
                         <input type="hidden" name="_method"
                         value="DELETE">
-                        <input type="submit" value="DELETE" name="" id="" class="btn rounded-5 btn-outline-danger">
+                        <input type="submit" value="DELETE" name="" id="" class="btn rounded-5  <%= hive.hiveStrength === 0 ? 'btn-outline-warning' : 'btn-outline-danger' %>">
                       </form>
                       <a
                         href="/hive/edit/<%= hive.id %>"

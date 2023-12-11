@@ -148,5 +148,5 @@ process.on('SIGINT', () => {
 
 
 app.listen(PORT, () => {
-    console.log('Listening on port 3000')
-})
+    console.log(`Listening on port ${PORT}`);
+});
