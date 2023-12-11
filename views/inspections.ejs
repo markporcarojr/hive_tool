@@ -11,11 +11,11 @@
           <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-75 fw-bold">
         </div>
         
-        <div class="row row-cols-1 row-cols-lg-3 g-2 " >
+        <div class="row row-cols-1 row-cols-lg-3 g-2" >
               <% data.forEach((inspection) => {%>
                     <div class="col gy-4" data-hive-number=" <%= inspection.hiveNumber %> ">
                       <div class="container text-start px-2 pop" style="max-width: 500px">
-                        <div class="card border-michgold border-3 rounded-5 m- mx-auto">
+                        <div class="card border-michgold border-3 rounded-5 m- mx-auto <%= inspection.temperament === '⚠️ Dead' ? 'bg-danger' : '' %>">
                           <div
                             class="container text-michgold card-body d-flex justify-content-between border-bottom border-3 border-michgold"
                           >
@@ -184,21 +184,27 @@
                             <div>% <%= inspection.strength %> </div>
                           </div>
                     
-                          <div class="card-body text-michgold">
-                            <p class="card-text m-0"><%= inspection.temperament %></p>
-                            <p class="card-text m-0"><%= inspection.queen %></p>
-                            <p class="card-text m-0"><%= inspection.brood %></p>
-                            <p class="card-text m-0"> <%= inspection.eggs %> </p>
-                            <p class="card-text m-0"><%= inspection.disease %></p>
-                            <p class="card-text m-0"><%= inspection.pests %></p>
-                            <p class="card-text m-0"> <%= inspection.queenCell %> </p>
-                          </div>
+                           <div class="card-body text-michgold">
+                             <p class="card-text m-0"><%= inspection.temperament %></p>
+                             <p class="card-text m-0"><%= inspection.queen %></p>
+                             <p class="card-text m-0"><%= inspection.brood %></p>
+                             <p class="card-text m-0"> <%= inspection.eggs %> </p>
+                             <p class="card-text m-0"><%= inspection.disease %></p>
+                             <p class="card-text m-0"><%= inspection.pests %></p>
+                             <p class="card-text m-0"> <%= inspection.queenCell %> </p>
+                           </div>
+
+                         <div class="d-flex justify-content-between text-michgold mx-4 my-2">                        
+                           <div>
+                            <p><%= inspection.inspectionNote %></p>
+                           </div>
+                         </div>
 
                           <div class="d-flex justify-content-between mx-3 mb-2">
                             <form action="/inspection/delete/<%= inspection.id %>?_method=DELETE" method="post">
                               <input type="hidden" name="_method"
                               value="DELETE">
-                              <input type="submit" value="DELETE"  class="btn rounded-5 btn-outline-danger">
+                              <input type="submit" value="DELETE"  class="btn rounded-5 <%= inspection.temperament === '⚠️ Dead' ? 'btn-outline-warning' : 'btn-outline-danger' %>">
                             </form>
                             <a
                               href="/inspection/edit/<%= inspection.id %>"
