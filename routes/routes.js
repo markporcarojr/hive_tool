@@ -68,15 +68,7 @@ router.get(
     }
 );
 
-
-
-
-
 // ********************************* PAGE ROUTING *******************************************
-
-
-
-
 
 // Privacy Policy
 router.get('/privacy-policy', (req, res) => {
@@ -278,16 +270,6 @@ router.get('/treatment/edit/:id', ensureAuthenticated, (req, res) => {
         .catch(err => console.log(err));
 });
 
-// Route for Edit User settings Page
-router.get('/user/edit/:id', ensureAuthenticated, (req, res) => {
-    User.findOne({
-        _id: req.params.id
-    })
-        .then(data => {
-            res.render('edit-settings', { data: data, title: 'Edit Settings' });
-        })
-        .catch(err => console.log(err));
-});
 
 // ===============================   EDIT ROUTING END    ===================================
 
@@ -341,13 +323,6 @@ router.post('/new-treatment', ensureAuthenticated, (req, res) => {
     const userId = req.user._id;
     universalController.saveNewData(req, res, Treatment, '/treatment', dateFieldName, userId);
 });
-
-// // Route for Saving Settings
-// router.post('/new-settings', ensureAuthenticated, (req, res) => {
-//     const dateFieldName = 'settingsDate';
-//     const userId = req.user._id;
-//     universalController.saveNewData(req, res, Settings, '/', dateFieldName, userId);
-// });
 
 // ************************************  END ADDING NEW DATA *******************************
 

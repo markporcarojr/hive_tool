@@ -10,18 +10,17 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    googleId: {
-        type: String,
-        unique: true,
-        sparse: true, // Allows null values and enforces unique constraint
-    },
     apiaryName: {
         type: String,
     },
     userName: {
         type: String,
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true, // Allows null values and enforces unique constraint
     }
-
 
 });
 
