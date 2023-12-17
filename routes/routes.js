@@ -57,7 +57,6 @@ router.get('/auth/google',
 );
 
 // Google Sign-In callback route
-// Google Sign-In callback route
 router.get(
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }), // Use the passport.authenticate middleware
