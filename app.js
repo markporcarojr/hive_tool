@@ -69,7 +69,7 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'https://hive-tool.onrender.com/login',
+    callbackURL: 'https://apiary-tool.com/login',
 },
     async (accessToken, refreshToken, profile, done) => {
         const googleId = profile.id;
@@ -79,8 +79,10 @@ passport.use(new GoogleStrategy({
             const user = await User.findOrCreate({ email, googleId });
             return done(null, user);
         } catch (error) {
-            return done(error, null);
+            console.error('Error during user creation:', error.stack);
+            return done('An error occurred during user creation', null);
         }
+
     }
 ));
 
