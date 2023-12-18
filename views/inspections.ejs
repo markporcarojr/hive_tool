@@ -6,10 +6,13 @@
         <div>
           <button id="allInspections" class="btn btn-sm mb-2 px-3 btn-michgold btn-gold rounded-pill">Show All Inspections</button>
         </div>
-        <div class="d-flex justify-content-center mb-2">
-          <button id="filterInpection" class="btn btn-sm px-2 btn-michgold btn-gold rounded-start-pill" onclick="filterByHiveNumber()" >Filter by Hive #</button>
-          <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25  text-center border-michgold rounded-end-pill opacity-75 fw-bold">
-        </div>
+        <form onsubmit="filterByHiveNumber(); return false;">
+          <div class="d-flex justify-content-center mb-2">
+            <button type="submit" id="filterInspection" class="btn btn-sm px-2 btn-michgold btn-gold rounded-start-pill">Filter by Hive #</button>
+            <input type="number" id="hiveNumberInput" class="form-control fs-5 bg-inputgrey border-3 w-25 text-center border-michgold rounded-end-pill opacity-75 fw-bold">
+          </div>
+        </form>
+        
         
         <div class="row row-cols-1 row-cols-lg-3 g-2" >
               <% data.forEach((inspection) => {%>

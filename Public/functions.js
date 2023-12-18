@@ -1,4 +1,5 @@
 document.getElementById('allInspections').addEventListener('click', showAllHives);
+
 require('dotenv').config();
 
 
@@ -111,14 +112,13 @@ function updateIcons() {
 
 // Inspection page 
 
+
 function filterByHiveNumber() {
     // Prompt the user to enter a hive number
-    // var hiveNumber = prompt("Enter Hive Number:");
     let hiveNumber = document.getElementById('hiveNumberInput').value;
 
     // Get all hive card elements
     const hiveCards = document.querySelectorAll('.col');
-
 
     // Check if the user entered a value
     if (hiveNumber !== '') {
@@ -145,6 +145,7 @@ function filterByHiveNumber() {
         hiveCards.forEach(hiveCard => hiveCard.style.display = 'block');
     }
 }
+
 
 function showAllHives() {
 

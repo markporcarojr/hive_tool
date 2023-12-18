@@ -13,7 +13,7 @@ const Swarm = require('../models/swarm');
 const Treatment = require('../models/treatment');
 const User = require('../models/user');
 
-
+// ********************************* Login/Sign-up ROUTING *******************************************
 
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/', // Redirect to home on success
@@ -367,12 +367,6 @@ router.put('/user/update/:id', ensureAuthenticated, (req, res) => {
 router.put('/swarm/update/:id', ensureAuthenticated, (req, res) => {
     const dateFieldName = 'swarmDate';
     universalController.editData(Swarm, req.params.id, req.body, res, '/swarmtrap', dateFieldName);
-});
-
-// Edit Treatment
-router.put('/treatment/update/:id', ensureAuthenticated, (req, res) => {
-    const dateFieldName = 'treatmentDate';
-    universalController.editData(Treatment, req.params.id, req.body, res, '/treatment', dateFieldName);
 });
 
 // Edit Treatment
