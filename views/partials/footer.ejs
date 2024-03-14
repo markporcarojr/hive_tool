@@ -14,7 +14,7 @@
     <!-- Copyright -->
     <div class="text-dark">
       <p class="mb-0">
-        © 2023 Copyright:
+        © <span id="currentYear"></span> Copyright:
         <a href="https://marks-bees.netlify.app/#/" class="text-dark"
           >Porcaro Farms</a
         >
@@ -32,4 +32,7 @@
     const apiKey = "<%= process.env.WEATHER_KEY %>";
     checkWeather(apiKey);
   });
+
+  const currentYear = new Date().getFullYear();
+  document.getElementById("currentYear").textContent = currentYear;
 </script>
