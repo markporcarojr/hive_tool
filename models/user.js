@@ -22,7 +22,13 @@ const userSchema = new mongoose.Schema({
         sparse: true, // Allows null values and enforces unique constraint
     }
 
-});
+},
+    {
+        timestamps: true
+    }
+
+
+);
 
 // Apply the passport-local-mongoose plugin
 userSchema.plugin(passportLocalMongoose);

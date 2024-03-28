@@ -30,6 +30,10 @@ async function getCurrentLocation() {
 
 async function checkWeather(apiKey) {
     try {
+        document.querySelector("#city").innerHTML = "--";
+        document.querySelector("#temp").innerHTML = "℉";
+        // document.querySelector("#clouds").innerHTML = "--";
+
         const position = await getCurrentLocation();
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
@@ -42,7 +46,6 @@ async function checkWeather(apiKey) {
         );
         const data = await response.json();
 
-        console.log(data);
         document.querySelector("#city").innerHTML = data.name;
         document.querySelector("#temp").innerHTML =
             Math.round(data.main.temp) + "℉";
