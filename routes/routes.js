@@ -12,6 +12,7 @@ const Inventory = require('../models/inventory');
 const Swarm = require('../models/swarm');
 const Treatment = require('../models/treatment');
 const User = require('../models/user');
+// require('../authenticate');
 
 // ********************************* Login/Sign-up ROUTING *******************************************
 
@@ -52,18 +53,26 @@ router.get('/logout', (req, res) => {
 
 
 // Google Sign-In route
-router.get('/auth/google',
+router.get('/google',
     passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 // Google Sign-In callback route
 router.get(
-    '/auth/google/callback',
+    '/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }), // Use the passport.authenticate middleware
     (req, res) => {
         // This function will only be called if authentication is successful
         console.log('Google authentication successful');
-        res.redirect('/'); // Redirect to the home page or any desired route
+
+        if (req.user) {
+            // User found, redirect to home page
+            res.redirect('/');
+        } else {
+            // Authentication failed (e.g., error during user creation)
+            console.error('Error during Google authentication:', req.flash('error')); // Access error message from flash
+            res.render('login', { error: req.flash('error') }); // Render login page with error message
+        }
     }
 );
 

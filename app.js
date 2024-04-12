@@ -68,7 +68,9 @@ app.use(passport.session());
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'https://apiary-tool.com',
+    callbackURL: 'https://apiary-tool.com/auth/google/callback',
+    ,
+
 },
     async (accessToken, refreshToken, profile, done) => {
         const googleId = profile.id;
@@ -78,12 +80,15 @@ passport.use(new GoogleStrategy({
             const user = await User.findOrCreate({ email, googleId });
             return done(null, user);
         } catch (error) {
-            console.error('Error during user creation:', error.stack);
-            return done('An error occurred during user creation', null);
+            if (error.code === 11000) { // Check for duplicate key error code
+                console.error('Duplicate user with Google ID:', googleId);
+                return done(new Error('A user with this Google ID already exists'), null); // Specific error message
+            } else {
+                console.error('Error creating user:', error.stack);
+                return done(new Error('An unexpected error occurred'), null); // Generic error for other issues
+            }
         }
-
-    }
-));
+    }));
 
 // Serialize user for session
 passport.serializeUser((user, done) => {

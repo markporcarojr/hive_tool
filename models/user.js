@@ -41,18 +41,22 @@ User.findOrCreate = async function (condition) {
     const { email, googleId } = condition;
 
     try {
+        // Check if the user already exists by email
         let user = await User.findOne({ email }).exec();
 
         if (user) {
+            // User already exists, return the existing user
             return user;
         } else {
-            // If user not found, create a new one with email and googleId
+            // User not found, create a new user with email and googleId
             user = await User.create({ email, googleId });
             return user;
         }
     } catch (error) {
+        // Handle specific errors or rethrow for higher-level handling
         throw error;
     }
 };
+
 
 module.exports = User;
