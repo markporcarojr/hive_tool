@@ -59,7 +59,7 @@ router.get('/google',
 
 // Google Sign-In callback route
 router.get(
-    '/google/callback',
+    '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }), // Use the passport.authenticate middleware
     (req, res) => {
         // This function will only be called if authentication is successful
