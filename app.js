@@ -92,7 +92,6 @@ passport.use(new GoogleStrategy({
 
 // Serialize user for session
 passport.serializeUser((user, done) => {
-    l
     done(null, user.id);
 });
 
