@@ -73,15 +73,15 @@ passport.use(new GoogleStrategy({
 
 },
     async (accessToken, refreshToken, profile, done) => {
-        const googleId = profile.id;
+        // const googleId = profile.id;
         const email = profile.emails[0].value; // Assuming you want to use the first email
 
         try {
-            const user = await User.findOrCreate({ email, googleId });
+            const user = await User.findOrCreate({ email });
             return done(null, user);
         } catch (error) {
             if (error.code === 11000) { // Check for duplicate key error code
-                console.error('Duplicate user with Google ID:', googleId);
+                // console.error('Duplicate user with Google ID:', googleId);
                 return done(new Error('A user with this Google ID already exists'), null); // Specific error message
             } else {
                 console.error('Error creating user:', error.stack);
