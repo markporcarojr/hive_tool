@@ -61,20 +61,27 @@ router.get('/google',
 router.get(
     '/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }), // Use the passport.authenticate middleware
-    (req, res) => {
+    async (req, res) => {
         // This function will only be called if authentication is successful
         console.log('Google authentication successful');
 
-        if (req.user) {
-            // User found, redirect to home page
-            res.redirect('/');
-        } else {
-            // Authentication failed (e.g., error during user creation)
-            console.error('Error during Google authentication:', req.flash('error')); // Access error message from flash
-            res.render('login', { error: req.flash('error') }); // Render login page with error message
+        try {
+            // Check if the user is already authenticated
+            if (req.isAuthenticated()) {
+                // User found, redirect to home page
+                res.redirect('/');
+            } else {
+                // User not authenticated, handle the error
+                throw new Error('User not authenticated');
+            }
+        } catch (error) {
+            // Handle the error without redirecting
+            console.error('Error during Google authentication:', error.message);
+            res.status(500).send('Internal Server Error'); // Send a generic error response
         }
     }
 );
+
 
 // ********************************* PAGE ROUTING *******************************************
 
