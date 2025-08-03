@@ -16,11 +16,39 @@ const User = require('../models/user');
 
 // ********************************* Login/Sign-up ROUTING *******************************************
 
+
+router.post('/guest-login', async (req, res) => {
+    try {
+        // Check if the guest user exists in your database
+        const guestUser = await User.findOne({ email: 'guest@guest' });
+
+        if (!guestUser) {
+            return res.status(404).json({ message: 'Guest user not found' });
+        }
+
+        // Log in the guest user (optional, depending on your session management)
+        // req.logIn(guestUser, (err) => {
+        //     if (err) {
+        //         return res.status(500).json({ message: 'Internal server error' });
+        //     }
+        //     return res.redirect('/'); // Redirect to home or dashboard
+        // });
+
+        return res.status(200).json({ message: 'Guest login successful', user: guestUser });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 router.post('/login', passport.authenticate('local', {
     successRedirect: '/', // Redirect to home on success
     failureRedirect: '/login', // Redirect to login on failure
     failureFlash: true, // Enable flash messages for authentication failures
 }));
+
+
+
 
 // Handle Signup Form Submission
 router.post("/signup", async (req, res) => {
@@ -163,6 +191,12 @@ router.get('/inventory', ensureAuthenticated, (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login', { title: 'Hive Tool' });
 });
+
+// Route to Guest Login
+router.get('/guest-login', (req, res) => {
+    res.render('guest-login', { title: 'Hive Tool - Guest Login' });
+});
+
 
 // Route to Settings Form
 router.get('/settings-form', ensureAuthenticated, (req, res) => {
